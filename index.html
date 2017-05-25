@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>单晓兰滴Blog</title>
+  <title>兰小妞滴Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="学习，积累，成长">
 <meta property="og:type" content="website">
-<meta property="og:title" content="单晓兰滴Blog">
+<meta property="og:title" content="兰小妞滴Blog">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="单晓兰滴Blog">
+<meta property="og:site_name" content="兰小妞滴Blog">
 <meta property="og:description" content="学习，积累，成长">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单晓兰滴Blog">
+<meta name="twitter:title" content="兰小妞滴Blog">
 <meta name="twitter:description" content="学习，积累，成长">
   
-    <link rel="alternate" href="/atom.xml" title="单晓兰滴Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="兰小妞滴Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -36,7 +36,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">单晓兰滴Blog</a>
+        <a href="/" id="logo">兰小妞滴Blog</a>
       </h1>
       
     </div>
@@ -53,7 +53,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -64,9 +64,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-iOS静态代码扫描工具Fauxpas的使用小纪" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-iOS静态代码扫描工具Fauxpas的使用小记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/" class="article-date">
+    <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" class="article-date">
   <time datetime="2017-05-24T11:00:40.000Z" itemprop="datePublished">yyyy-00-三</time>
 </a>
     
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/">iOS静态代码扫描工具Fauxpas的使用小纪</a>
+      <a class="article-title" href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/">iOS静态代码扫描工具Fauxpas的使用小记</a>
     </h1>
   
 
@@ -97,13 +97,13 @@
 <p>validateconfig &lt;配置文件的路径&gt; ： 验证该配置文件是否有效</p>
         
           <p class="article-more-link">
-            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/#more">Read More</a>
+            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/" data-id="cj32w2y740000rts6jj4zg3c9" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" data-id="cj341qsyg0000qes6pylowx7w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,13 +139,26 @@
 <p>自从xcode8与ios10发布之后，使用appium做ios自动化测试的就苦逼了。appium团队在连续发布1.6的三个beat版本试用之后总是有这样那样的问题，不过还是怀着一颗兴奋的心情迫不及待的投入试用过程中，试用过程如下：  </p>
 </blockquote>
 <p><em>首先需要强调的是，由于这个还是beta版本，很多东西都需要源码进行，所以重要的事情强调三遍：安装新版appium请翻墙！安装新版appium请翻墙！安装新版appium请翻墙！</em>  </p>
-<h2 id="appium-1-6的npm安装"><a href="#appium-1-6的npm安装" class="headerlink" title="appium 1.6的npm安装"></a>appium 1.6的npm安装</h2><p><code>npm install -g appium@beta</code>  </p>
+<h2 id="appium-1-6的npm安装"><a href="#appium-1-6的npm安装" class="headerlink" title="appium 1.6的npm安装"></a>appium 1.6的npm安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g appium@beta</div></pre></td></tr></table></figure>
 <ul>
 <li>安装新版appium首先需要将本地的老版本appium删除  </li>
-<li>新版appium安装需要依赖的node版本需要是最新版的(我也不知道为什么，网上也没有找到原因，但是升级了最新的node后安装就莫名其妙的搞定了)<br>我本地的版本如下所示：<br><code>~ npm --version  
+<li>新版appium安装需要依赖的node版本需要是最新版的(我也不知道为什么，网上也没有找到原因，但是升级了最新的node后安装就莫名其妙的搞定了)<br>我本地的版本如下所示：   <pre><code class="shell">~ npm --version  
 3.10.8  
 ~ node --version  
-v7.0.0</code>    <h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层依赖" class="headerlink" title="appium1.6的底层依赖"></a>appium1.6的底层依赖</h2>appium1.6会用到webdriverAgent,按照如下链接安装<br><a href="https://github.com/facebook/WebDriverAgent" target="_blank" rel="external">WebDriverAgent</a>  <h2 id="修改所依赖的jar包"><a href="#修改所依赖的jar包" class="headerlink" title="修改所依赖的jar包"></a>修改所依赖的jar包</h2>实际在跑case的时候，总会遇到各种各样的报错，当时着急找方案解决，忘记记录下报错信息了，尴尬ing。。。<br>总结起来appium升级后对于本地的影响最大的还是做依赖的jar包版本，特别是基于某些内部的框架进行编写时，需要修改的jar包主要是selenium相关的各种jar包，具体修改的jar包如下：  </li>
+v7.0.0
+</code></pre>
+<h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层依赖" class="headerlink" title="appium1.6的底层依赖"></a>appium1.6的底层依赖</h2>appium1.6会用到webdriverAgent,按照如下链接安装<br><a href="https://github.com/facebook/WebDriverAgent" target="_blank" rel="external">WebDriverAgent</a>  <h2 id="修改所依赖的jar包"><a href="#修改所依赖的jar包" class="headerlink" title="修改所依赖的jar包"></a>修改所依赖的jar包</h2>实际在跑case的时候，总会遇到各种各样的报错，当时着急找方案解决，忘记记录下报错信息了，尴尬ing。。。<br>总结起来appium升级后对于本地的影响最大的还是做依赖的jar包版本，特别是基于某些内部的框架进行编写时，需要修改的jar包主要是selenium相关的各种jar包，具体修改的jar包与版本如下：<pre><code class="shell">-rw-r--r--   1 didi  staff    94973 11 28 19:03 selenium-api-3.0.1.jar
+-rw-r--r--   1 didi  staff     9567 11 28 19:05 selenium-chrome-driver-3.0.1.jar
+-rw-r--r--   1 didi  staff     4907 11 28 19:06 selenium-edge-driver-3.0.1.jar
+-rw-r--r--   1 didi  staff   764941 11 28 19:07 selenium-firefox-driver-3.0.1.jar
+-rw-r--r--   1 didi  staff     9816 11 28 19:07 selenium-ie-driver-3.0.1.jar
+-rw-r--r--   1 didi  staff      379 11 28 19:08 selenium-java-3.0.1.jar
+-rw-r--r--   1 didi  staff     7829 11 28 19:08 selenium-opera-driver-3.0.1.jar
+-rw-r--r--   1 didi  staff   310403 11 28 19:10 selenium-remote-driver-3.0.1.jar
+-rw-r--r--   1 didi  staff    37999 11 28 19:11 selenium-safari-driver-3.0.1.jar
+-rw-r--r--   1 didi  staff   170335 11 28 19:12 selenium-support-3.0.1.jar
+</code></pre>
+PS：如何下载以及导入jar包，自行搜索   <h2 id="对脚本影响最大的就是基于xpath识别的控件"><a href="#对脚本影响最大的就是基于xpath识别的控件" class="headerlink" title="对脚本影响最大的就是基于xpath识别的控件"></a>对脚本影响最大的就是基于xpath识别的控件</h2></li>
 </ul>
 
         
@@ -156,7 +169,7 @@ v7.0.0</code>    <h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj32w2y7e0002rts6c93subk7" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj341qsyq0002qes6qc73mhoi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +214,7 @@ v7.0.0</code>    <h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/test/" data-id="cj32w2y7a0001rts6ur26ada9" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/24/test/" data-id="cj341qsyl0001qes6hjzht23u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +260,7 @@ v7.0.0</code>    <h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj32w2y7h0003rts6c67k54aw" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj341qsyt0003qes6gpokpu9g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +285,7 @@ v7.0.0</code>    <h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层�
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
     </div>
@@ -282,12 +295,12 @@ v7.0.0</code>    <h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层�
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/">iOS静态代码扫描工具Fauxpas的使用小纪</a>
+            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/">iOS静态代码扫描工具Fauxpas的使用小记</a>
           </li>
         
           <li>
