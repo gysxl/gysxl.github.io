@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS静态代码扫描工具Fauxpas的使用小纪 | 单晓兰滴Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Faux Pas是一个Xcode辅助工具，用以检查Xcode项目，找出常见的错误、隐藏的bug、不良实践以及可维护性问题和风格问题。 拥有可视化界面和命令行两种操作方式。  命令行的使用基本格式1Fauxpas [选项] &amp;lt;命令&amp;gt; 命令列表check &amp;lt;.xcodeproj文件的路径&amp;gt; ： 检查指定的Xcode项目check-xcode : 检查当前的xcode项目，这个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS静态代码扫描工具Fauxpas的使用小纪">
+<meta property="og:url" content="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/index.html">
+<meta property="og:site_name" content="单晓兰滴Blog">
+<meta property="og:description" content="Faux Pas是一个Xcode辅助工具，用以检查Xcode项目，找出常见的错误、隐藏的bug、不良实践以及可维护性问题和风格问题。 拥有可视化界面和命令行两种操作方式。  命令行的使用基本格式1Fauxpas [选项] &amp;lt;命令&amp;gt; 命令列表check &amp;lt;.xcodeproj文件的路径&amp;gt; ： 检查指定的Xcode项目check-xcode : 检查当前的xcode项目，这个">
+<meta property="og:updated_time" content="2017-05-24T11:01:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS静态代码扫描工具Fauxpas的使用小纪">
+<meta name="twitter:description" content="Faux Pas是一个Xcode辅助工具，用以检查Xcode项目，找出常见的错误、隐藏的bug、不良实践以及可维护性问题和风格问题。 拥有可视化界面和命令行两种操作方式。  命令行的使用基本格式1Fauxpas [选项] &amp;lt;命令&amp;gt; 命令列表check &amp;lt;.xcodeproj文件的路径&amp;gt; ： 检查指定的Xcode项目check-xcode : 检查当前的xcode项目，这个">
+  
+    <link rel="alternate" href="/atom.xml" title="单晓兰滴Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">单晓兰滴Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-iOS静态代码扫描工具Fauxpas的使用小纪" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/" class="article-date">
+  <time datetime="2017-05-24T11:00:40.000Z" itemprop="datePublished">yyyy-00-三</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS静态代码扫描工具Fauxpas的使用小纪
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Faux Pas是一个Xcode辅助工具，用以检查Xcode项目，找出常见的错误、隐藏的bug、不良实践以及可维护性问题和风格问题。 拥有可视化界面和命令行两种操作方式。</p>
+</blockquote>
+<h1 id="命令行的使用"><a href="#命令行的使用" class="headerlink" title="命令行的使用"></a>命令行的使用</h1><h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Fauxpas [选项] &lt;命令&gt;</div></pre></td></tr></table></figure>
+<h2 id="命令列表"><a href="#命令列表" class="headerlink" title="命令列表"></a>命令列表</h2><p>check &lt;.xcodeproj文件的路径&gt; ： 检查指定的Xcode项目<br>check-xcode : 检查当前的xcode项目，这个命令必须运行在Xcode项目的run script里,run script中写法示例：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[[ $&#123;FAUXPAS_SKIP&#125; == 1 ]] &amp;&amp; exit 0</div><div class="line">FAUXPAS_PATH="/usr/local/bin/fauxpas"</div><div class="line">if [[ -f "$&#123;FAUXPAS_PATH&#125;" ]]; then</div><div class="line">  "$&#123;FAUXPAS_PATH&#125;" check-xcode</div><div class="line">else</div><div class="line">  echo "warning: Faux Pas was not found at '$&#123;FAUXPAS_PATH&#125;'"</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<p>rules &lt;可选规则的名称&gt; ： 显示规则的详情</p>
+<p>tags &lt;可选标签的名称&gt; ： 显示标签的详情</p>
+<p>exampleconfig : 输出一个配置文件的例子</p>
+<p>validateconfig &lt;配置文件的路径&gt; ： 验证该配置文件是否有效</p>
+<p>clearcaches &lt;.xcodeproj文件的路径&gt; ： 清理该项目中所有Faxu Pas的缓存</p>
+<p>updatelicense &lt;证书类型&gt; &lt;证书名称&gt; &lt;证书key&gt; : 更新授权<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">证书类型（四种）：</div><div class="line">personal, organization-seat, site, enterprise</div></pre></td></tr></table></figure></p>
+<p>help : 显示完成使用信息</p>
+<p>docs : 显示文档</p>
+<p>version : 显示app版本号</p>
+<h2 id="选项列表-options"><a href="#选项列表-options" class="headerlink" title="选项列表(options)"></a>选项列表(options)</h2><p>-t, –target : 要检查的Xcode target</p>
+<p>-b, –buildConfig : 要检查的Xcode编译配置</p>
+<p>-r, –rules : 要使用的规则（默认是空，[]）,这value必须是规则的短名称</p>
+<p>–onlyRules : 只用这一条规则，value必须是规则的短名称，使用这个选项会覆盖所有其他规则选定的选项</p>
+<p>-g, –ruleTags : 要应用的规则tag，默认是[“Recommended”]，选择拥有指定tag的规则</p>
+<p>–excludedRules : 排除规则，默认是空[], 排除指定规则，哪怕这些规则已经被选中</p>
+<p>-c, –configFile : 指定一个配置文件，如果项目已经有一个配置文件了，这个将覆盖它</p>
+<p>-x, –fileExclusionPrefixes 排除带有特定前缀的文件，例如”HG”，将排除”HGObject.m”和”NSString+HGExtensions.m”</p>
+<p>–fileExclusionXcodeGroups : 排除Xcode项目中group，默认是[“Vendor”]</p>
+<p>–fileExclusionRegexes : 按照正则表达式排除文件，默认是空[],按照给定的ICU正则表达式匹配的绝对路径排除文件</p>
+<p>–minErrorStatusSeverity &lt;”Concern”/“Warning”/“Error”/“Fatal”/“None”&gt; : 最小的诊断严重性来返回非零的退出状态，默认是Error,如果一个诊断在给定的严重性级别或者更高，则返回一个非0的值，如果设置为None，则永远返回0（0即成功）</p>
+<p>–workspace : 指定构建项目的Xcode工作空间。指定一个工作空间（伴随着scheme 选项）如果这个项目无法单独编译起来（例如cocoapod集成的情况</p>
+<p>–scheme : 指定编译项目的scheme，（一般伴随着workspace选项一起），如果这个项目无法单独编译起来（例如cocoapod集成的情况）</p>
+<p>–numConcurrentJobs : 多线程检查的数量，如果这个值是忽略或0，Faxu Pas会自己定一个合适的值</p>
+<p>–extraCompilerArgs : 额外的编译参数，默认是空[],用于分析源代码文件</p>
+<p>–extraXcodebuildArgs : 额外的xcodebuild参数，默认是[]，用于xcodebuild运行时</p>
+<p>-f, –fullBuild : 在检查前先运行项目，默认是no,如果在构建过程中项目生成源文件或者在项目源代码的成功解释，则为yes,否则就会用完成的构建来替代。这样会花费更多时间，但是会有效减少一些cased有关false的数量</p>
+<p>–cacheBuildLog : 缓存项目构建日志，默认是yes,这会加大检查过程中的运行时间</p>
+<p>–useOwnModulesCache : 使用自己的模块来缓存，默认是yes,这是为了避免和系统缓存冲突</p>
+<p>–processOnlyTargetPCHs : 处理单一target预编译头文件,默认是yes,关闭这个设置将使得检查变得很慢，在某些共享的预编译头文件中可能是必须的</p>
+<p>-v, –verbose : 可以打印出更多的日志细节，默认是no</p>
+<p>-o, –outputFormat &lt;”human” / “json” / “plist” / “xcode”&gt; : 输出格式，默认”human”</p>
+<h1 id="规则列表"><a href="#规则列表" class="headerlink" title="规则列表"></a>规则列表</h1><h2 id="UndetachedDelegate"><a href="#UndetachedDelegate" class="headerlink" title="UndetachedDelegate"></a>UndetachedDelegate</h2><p>未解绑的delegate或data source</p>
+<p>Tags:BestPractice, Recommended</p>
+<p>当一个对象将自己设置成delegate或者其成员的数据源，必须在[NSObject dealloc]里解除引用.</p>
+<p>Options:<br>UndetachedDelegate.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="InvalidStringsFile"><a href="#InvalidStringsFile" class="headerlink" title="InvalidStringsFile"></a>InvalidStringsFile</h2><p>应用于本地化项目的无效字符串资源文件(字符串资源文件应该是有效的plist)</p>
+<p>Tags(点击tag可跳转): Recommended, Localization</p>
+<p>Options:</p>
+<p>InvalidStringsFile.ignoredFileRegexes：<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="StringsFileEncoding"><a href="#StringsFileEncoding" class="headerlink" title="StringsFileEncoding"></a>StringsFileEncoding</h2><p>字符串资源文件不是UTF-8编码</p>
+<p>应用于.git管理的项目</p>
+<p>Tags：Recommended, Localization, VCS, BestPractice、</p>
+<p>git选择使用UTF-8编码，并不能很好的支持其他编码（例如UTF-16）。会把UTF-16文件当做二进制文件，不能逐行显示差别</p>
+<p>Options:</p>
+<p>StringsFileEncoding.ignoredFileRegexes：<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="UIKitKVO"><a href="#UIKitKVO" class="headerlink" title="UIKitKVO"></a>UIKitKVO</h2><p>使用KVO观察UIKit对象</p>
+<p>Tags(点击tag可跳转): Recommended, APIUsage</p>
+<p>UIKit框架的类通常不支持KVO，如果KVO在这类property上工作，会发生不可知的行为，且未来也不能保证能运行良好</p>
+<p>Options:<br>UIKitKVO.allowSubclasses<br>(Boolean. Default: yes)<br>允许观察自定义的实现了KVO的UIKit子类（这种情况不抛出警告）</p>
+<p>UIKitKVO.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="UnnecessaryNullCheck"><a href="#UnnecessaryNullCheck" class="headerlink" title="UnnecessaryNullCheck"></a>UnnecessaryNullCheck</h2><p>在free()调用前检查多余的NULL</p>
+<p>Tags(点击tag可跳转): Recommended, Pedantic</p>
+<p>free(NULL)是空指令，什么也不做</p>
+<p>扩展阅读:<br><a href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/free.3.html" target="_blank" rel="external">free() man page</a></p>
+<p>Options:<br>UnnecessaryNullCheck.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="RetinaImagesResolution"><a href="#RetinaImagesResolution" class="headerlink" title="RetinaImagesResolution"></a>RetinaImagesResolution</h2><p>非预期的高清图片分辨率</p>
+<p>Tags(点击tag可跳转): Recommended, Resources</p>
+<p>@2x或@3x的图片资源必须和低倍的图片尺寸相匹配（即刚好是其2倍或3倍尺寸,因为无论屏幕尺寸多大，其展示的上下文是完全一样的），否则图片的有效分辨率会不匹配其上下文的分辨率，将导致出现一个模糊的图片，边框空白或者溢出</p>
+<p>扩展阅读:<br><a href="https://developer.apple.com/high-resolution/" target="_blank" rel="external">Apple Developer: Optimizing for High Resolution</a></p>
+<p>Options:<br>RetinaImagesResolution.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="AssertionSideEffects"><a href="#AssertionSideEffects" class="headerlink" title="AssertionSideEffects"></a>AssertionSideEffects</h2><p>断言的副作用</p>
+<p>Tags(点击tag可跳转): Recommended, BestPractice</p>
+<p>如果断言宏正文包含了无getter函数或方法的调用，则该规则会抛出警告</p>
+<p>断言不应该有副作用，因为正常情况下release打包后是失效的 - 程序的行为不应该依赖断言生效与否</p>
+<p>本条规则涉及范围是Foundation的断言宏</p>
+<p>Options:<br>AssertionSideEffects.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="SuspiciousResources"><a href="#SuspiciousResources" class="headerlink" title="SuspiciousResources"></a>SuspiciousResources</h2><p>可疑的bundle资源</p>
+<p>可疑的bundle资源</p>
+<p>Tags(点击tag可跳转): Recommended, Resources</p>
+<p>许多文件是项目的一部分，只能在build或者development的时候生效（例如Xcode配置文件），如果添加到bundle资源中就会导致错误</p>
+<p>Options:<br>SuspiciousResources.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="NullCoalescingOp"><a href="#NullCoalescingOp" class="headerlink" title="NullCoalescingOp"></a>NullCoalescingOp</h2><p>和空对象合并操作</p>
+<p>Tags(点击tag可跳转): Recommended, Style</p>
+<p>(obj ? obj : other)的表达式可以写成obj ?: other</p>
+<p>Options:<br>NullCoalescingOp.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="LoadMethodWithoutAutoreleasePool"><a href="#LoadMethodWithoutAutoreleasePool" class="headerlink" title="LoadMethodWithoutAutoreleasePool"></a>LoadMethodWithoutAutoreleasePool</h2><p>[NSObject load]方法中没有@autoreleasepool</p>
+<p>该规则适用于iOS 5或Mac OS 10.7 及之前的项目target中</p>
+<p>Tags(点击tag可跳转): Recommended, BestPractice</p>
+<p>要执行+[NSObject load]，需要手动建立一个自动释放池</p>
+<p>Options:<br>LoadMethodWithoutAutoreleasePool.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="UnknownResourceCodeReference"><a href="#UnknownResourceCodeReference" class="headerlink" title="UnknownResourceCodeReference"></a>UnknownResourceCodeReference</h2><p>代码引用未知资源</p>
+<p>应用于target上</p>
+<p>Tags(点击tag可跳转): Recommended, Resources</p>
+<p>从硬盘上实时加载的资源，本应该提前放在正确路径的bundle中。注意iOS模拟器运行在Mac上，和其不同，iOS设备有一个区分大小写的系统</p>
+<p>Options:<br>UnknownResourceCodeReference.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="StringsdictWithoutStrings"><a href="#StringsdictWithoutStrings" class="headerlink" title="StringsdictWithoutStrings"></a>StringsdictWithoutStrings</h2><p>.stringdict文件没有匹配.string文件</p>
+<p>应用于本地化项目</p>
+<p>Tags(点击tag可跳转): Recommended, Localization</p>
+<p>如果一个.stringsdict文件作为资源包含进项目，一个同名的.string文件也需要包含进项目，即使是空的，否则将不能从.stringsdict文件中读取翻译</p>
+<p>扩展阅读:<br>Foundation Release Notes for OS X v10.9</p>
+<p>Options:<br>StringsdictWithoutStrings.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="InitializeSuperInvocation"><a href="#InitializeSuperInvocation" class="headerlink" title="InitializeSuperInvocation"></a>InitializeSuperInvocation</h2><p>+[NSObject initialize]调用了super方法</p>
+<p>Tags(点击tag可跳转): Recommended, BestPractice</p>
+<p>+[NSObject initialize]的实现中不应该调用了super方法，initialize这个方法比较特殊，它每一个子类是独立的。</p>
+<p>Options:<br>InitializeSuperInvocation.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="CompilerWarnings"><a href="#CompilerWarnings" class="headerlink" title="CompilerWarnings"></a>CompilerWarnings</h2><p>推荐的编译警告选项</p>
+<p>Tags(点击tag可跳转): Recommended, BestPractice, Config</p>
+<p>Some compiler warnings and warning groups are so useful that they should be<br>enabled at all times.</p>
+<p>补充阅读:<br><a href="http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-command-line-flags" target="_blank" rel="external">Clang Compiler User’s Manual: Controlling Diagnostics via Command Line Flags</a></p>
+<p><a href="https://developer.apple.com/legacy/library/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/0-Introduction/introduction.html#//apple_ref/doc/uid/TP40003931-CH3-SW105" target="_blank" rel="external">Xcode Build Setting Reference</a></p>
+<p><a href="http://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html" target="_blank" rel="external">GCC Warning Options (many are the same in Clang)</a></p>
+<p>Options:<br>CompilerWarnings.flags<br>字符串数组，默认是[“-Werror”, “-Wall”, “-Wextra”, “-Wshadow”, “-Wfloat-equal”, “-Wundef”, “-Wnewline-eof”, “-Wempty-body”, “-Wconversion”, “-Wsign-compare”, “-Wreturn-type”, “-Wdeprecated-implementations”, “-Wimplicit-retain-self”]</p>
+<p>CompilerWarnings.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="UnsupportedWeakReference"><a href="#UnsupportedWeakReference" class="headerlink" title="UnsupportedWeakReference"></a>UnsupportedWeakReference</h2><p>将一个不能weak的对象指定为weak属性</p>
+<p>用于OS X target</p>
+<p>Tags(点击tag可跳转): Recommended</p>
+<p>在OS X中，许多类是不能创建weak实例（参见苹果文档中详细列表）</p>
+<p>The Clang编译器会为上述不能weak的变量抛出警告</p>
+<p>推荐阅读:<br>Transitioning to ARC Release Notes: Frequently Asked Questions: Which classes don’t support weak references?</p>
+<p>Options:<br>UnsupportedWeakReference.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="HardcodedUIString"><a href="#HardcodedUIString" class="headerlink" title="HardcodedUIString"></a>HardcodedUIString</h2><p>UI 字符串没有本地化</p>
+<p>应用于本地化项目</p>
+<p>Tags(点击tag可跳转): Recommended , Localization</p>
+<p>所有的字符串倾向于使用NSLocalizedString()来本地化</p>
+<p>Options:<br>HardcodedUIString.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="HardcodedSelfClass"><a href="#HardcodedSelfClass" class="headerlink" title="HardcodedSelfClass"></a>HardcodedSelfClass</h2><p>硬编码自身类引用</p>
+<p>Tags(点击tag可跳转): Recommended , BestPractice</p>
+<p>如果一个Objective-C类（或者一个类实例）向自身发一个消息，例如[FOOThing alloc]，推荐使用self来代替（例如[self alloc] or [[self class] alloc]）这样实际的类将受到消息，子类化行为将不会被阻止</p>
+<p>Options:</p>
+<p>HardcodedSelfClass.warnOnlyAboutAlloc<br>(Boolean. Default: no)<br>只限制alloc操作</p>
+<p>HardcodedSelfClass.checkOnlyFactoryMethods<br>(Boolean. Default: no)<br>只检查工厂方法</p>
+<p>HardcodedSelfClass.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="MacroBasedIncludeGuard"><a href="#MacroBasedIncludeGuard" class="headerlink" title="MacroBasedIncludeGuard"></a>MacroBasedIncludeGuard</h2><p>用宏保障#include引用一次</p>
+<p>Tags(点击tag可跳转): Recommended , BestPractice</p>
+<p>通过#pragma once宏定义来检查是否引用了一次，能够简化头文件</p>
+<hr>
+<h2 id="RestrictedDirectMethodCall"><a href="#RestrictedDirectMethodCall" class="headerlink" title="RestrictedDirectMethodCall"></a>RestrictedDirectMethodCall</h2><p>限制直接方法调用</p>
+<p>Tags(点击tag可跳转): Recommended , APIUsage</p>
+<p>许多系统类不能直接调用</p>
+<p>本规则将不会对覆盖方法调用父类实现的情况抛出警告</p>
+<p>Options:<br>RestrictedDirectMethodCall.allowInSubclass<br>(Boolean. Default: yes)<br>允许从子类直接调用，如果调用定义在父类的限制方法则不会抛出警告</p>
+<p>RestrictedDirectMethodCall.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="RecommendedVCSIgnores"><a href="#RecommendedVCSIgnores" class="headerlink" title="RecommendedVCSIgnores"></a>RecommendedVCSIgnores</h2><p>推荐的版本控制系统忽略项</p>
+<p>应用于git管理的项目</p>
+<p>Tags(点击tag可跳转): Recommended , VCS</p>
+<p>当许多文件被建议在版本控制系统中忽略却实际上没有忽略则会抛出警告，反之亦然</p>
+<p>Options:<br>RecommendedVCSIgnores.workspaceIgnored<br>(Boolean. Default: no)<br>Xcode工作空间数据应该被忽略</p>
+<p>RecommendedVCSIgnores.cocoaPodsIgnored<br>(Boolean. Default: no)<br>CocoaPods数据应该被忽略（例如Pods文件夹，只有当CocoaPods在使用时才会警告）</p>
+<p>RecommendedVCSIgnores.carthageBuildIgnored<br>(Boolean. Default: yes)<br>Carthage/Build数据应该被忽略（例如Pods文件夹，只有当Carthage在使用时才会警告）</p>
+<p>RecommendedVCSIgnores.carthageCheckoutsIgnored<br>(Boolean. Default: no)<br>Carthage/Checkouts数据应该被忽略（例如Pods文件夹，只有当Carthage在使用时才会警告）</p>
+<p>RecommendedVCSIgnores.appCodeUserDataIgnored<br>(Boolean. Default: yes)<br>用户指定的AppCode数据应该被忽略（例如.idea文件夹下的特定文件，只有当该文件夹存在时才会警告）</p>
+<p>RecommendedVCSIgnores.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="RetainingImmutableProperty"><a href="#RetainingImmutableProperty" class="headerlink" title="RetainingImmutableProperty"></a>RetainingImmutableProperty</h2><p>没复制不可变property</p>
+<p>Tags(点击tag可跳转): Recommended , BestPractice</p>
+<p>如果用retain语义指定了一个@property（该属性是NSCopying类型的不可变属性）,该规则会生成一个警告，因为这样也依然会产生一个可变子类变量（例如NSString）</p>
+<p>这个规则帮助避免一个property的值发生改变却没有setter能调用的情况（例如：可变对象的setter是可以调用的）</p>
+<p>Options:<br>RetainingImmutableProperty.ignorePrivateProperties<br>(Boolean. Default: yes)<br>不警告公共头文件以外的私有property</p>
+<p>RetainingImmutableProperty.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="22-CompleteNotificationCenterDetachment"><a href="#22-CompleteNotificationCenterDetachment" class="headerlink" title="22 CompleteNotificationCenterDetachment"></a>22 CompleteNotificationCenterDetachment</h2><p>解除NSNotificationCenter绑定</p>
+<p>Tags(点击tag可跳转): Recommended , BestPractice</p>
+<p>当一个对象移除了自身作为所有通知的响应者(-[NSNotificationCenter removeObserver:] self)时抛出警告</p>
+<p>如果一个父类或者一个子类希望保持观察通知，就会产生问题了。推荐在离开时解绑之前绑定在自身上指定的通知，而不是全部通知。</p>
+<p>在-dealloc中移除所有通知并不会触发本规则</p>
+<p>Options:<br>CompleteNotificationCenterDetachment.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="MissingAPIUsageDescription"><a href="#MissingAPIUsageDescription" class="headerlink" title="MissingAPIUsageDescription"></a>MissingAPIUsageDescription</h2><p>缺少API使用描述</p>
+<p>应用于应用target</p>
+<p>Tags(点击tag可跳转): Recommended , Config</p>
+<p>一些API(例如访问联系人或者日历)需要在app的metadata(info.plist)里添加使用描述。当系统询问用户是否允许app访问时会将描述呈现给用户，本规则在使用类似功能然而没有添加相关描述时抛出警告</p>
+<p>Options:<br>MissingAPIUsageDescription.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="XIBRuntimeAttributeMismatch"><a href="#XIBRuntimeAttributeMismatch" class="headerlink" title="XIBRuntimeAttributeMismatch"></a>XIBRuntimeAttributeMismatch</h2><p>XIB实时属性不匹配</p>
+<p>Tags(点击tag可跳转): Recommended , Resources</p>
+<p>当一个自定义XIB实时属性不能匹配对应类的源代码时抛出警告</p>
+<p>A key path that doesn’t match any of the class properties or setter methods<br>yields a diagnostic, as does a mismatch in the type of the assigned value and<br>the value type declared for the property or setter.</p>
+<hr>
+<h2 id="ThreadUnsafeInstanceCaching"><a href="#ThreadUnsafeInstanceCaching" class="headerlink" title="ThreadUnsafeInstanceCaching"></a>ThreadUnsafeInstanceCaching</h2><p>全局持有一个线程不安全的类实例</p>
+<p>Tags(点击tag可跳转): Recommended</p>
+<p>当全局存储一个对象指针指向线程不安全的类的实例时抛出警告</p>
+<p>-[NSThread threadDictionary]能够用于缓存线程不安全的类的实例 - 每个线程都有一个这样的实例</p>
+<p>这个规则会忽略代码复写了UIKit或者AppKit的子类（或者category）的情况，因为会假设主线程访问永远是安全的</p>
+<p>补充阅读:<br><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Multithreading/ThreadSafetySummary/ThreadSafetySummary.html" target="_blank" rel="external">Threading Programming Guide: Thread Safety Summary</a></p>
+<p>Options:ThreadUnsafeInstanceCaching.classNames<br>(字符串数组列表，默认是[“NSDateFormatter”, “NSNumberFormatter”, “NSMutableArray”, “NSMutableAttributedString”, “NSMutableCharacterSet”, “NSMutableData”, “NSMutableDictionary”, “NSMutableSet”, “NSMutableString”],这些线程不安全的类在本规则响应的范围内)</p>
+<p>ThreadUnsafeInstanceCaching.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<hr>
+<h2 id="MissingTranslation"><a href="#MissingTranslation" class="headerlink" title="MissingTranslation"></a>MissingTranslation</h2><p>翻译缺失</p>
+<p>应用于本地化项目</p>
+<p>Tags(点击tag可跳转): Recommended , Localization</p>
+<p>如果翻译缺少用于NSLocalizedString参数或者其变量的key，本规则会抛出警告</p>
+<p>Options:</p>
+<p>MissingTranslation.checkDevRegion<br>(Boolean. Default: no)<br>当缺少development region翻译时产生警告<br>(如果你不使用key作为隐式默认值时，就把这个设置为yes)</p>
+<p>MissingTranslation.ignoredKeyPrefixes<br>(字符串数组，默认是[]，忽略key的前缀，当缺少该前缀开头的key时不产生警告)</p>
+<p>MissingTranslation.ignoredFileRegexes<br>(设置要忽略的文件路径的正则表达式，值为正则表达式字符串的数组，正则表达式匹配的是需要忽略的文件的完成路径，默认是)</p>
+<p>_LocalizationRules.localizedStringRoutines<br>(字符串数组，默认是[]，用于替代NSLocalizedString的函数字符串，第一个参数假定是string key)</p>
+<hr>
+<h2 id="RestrictedMethodOverride"><a href="#RestrictedMethodOverride" class="headerlink" title="RestrictedMethodOverride"></a>RestrictedMethodOverride</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/" data-id="cj32w2y740000rts6jj4zg3c9" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">xcode8升级后基于XCUITest进行自动化测试的踩坑之旅</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/">iOS静态代码扫描工具Fauxpas的使用小纪</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/">xcode8升级后基于XCUITest进行自动化测试的踩坑之旅</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/24/test/">test</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 单晓兰<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

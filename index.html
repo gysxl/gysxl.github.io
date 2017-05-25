@@ -53,7 +53,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -64,10 +64,112 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-iOS静态代码扫描工具Fauxpas的使用小纪" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/" class="article-date">
+  <time datetime="2017-05-24T11:00:40.000Z" itemprop="datePublished">yyyy-00-三</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/">iOS静态代码扫描工具Fauxpas的使用小纪</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Faux Pas是一个Xcode辅助工具，用以检查Xcode项目，找出常见的错误、隐藏的bug、不良实践以及可维护性问题和风格问题。 拥有可视化界面和命令行两种操作方式。</p>
+</blockquote>
+<h1 id="命令行的使用"><a href="#命令行的使用" class="headerlink" title="命令行的使用"></a>命令行的使用</h1><h2 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Fauxpas [选项] &lt;命令&gt;</div></pre></td></tr></table></figure>
+<h2 id="命令列表"><a href="#命令列表" class="headerlink" title="命令列表"></a>命令列表</h2><p>check &lt;.xcodeproj文件的路径&gt; ： 检查指定的Xcode项目<br>check-xcode : 检查当前的xcode项目，这个命令必须运行在Xcode项目的run script里,run script中写法示例：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[[ $&#123;FAUXPAS_SKIP&#125; == 1 ]] &amp;&amp; exit 0</div><div class="line">FAUXPAS_PATH="/usr/local/bin/fauxpas"</div><div class="line">if [[ -f "$&#123;FAUXPAS_PATH&#125;" ]]; then</div><div class="line">  "$&#123;FAUXPAS_PATH&#125;" check-xcode</div><div class="line">else</div><div class="line">  echo "warning: Faux Pas was not found at '$&#123;FAUXPAS_PATH&#125;'"</div><div class="line">fi</div></pre></td></tr></table></figure></p>
+<p>rules &lt;可选规则的名称&gt; ： 显示规则的详情</p>
+<p>tags &lt;可选标签的名称&gt; ： 显示标签的详情</p>
+<p>exampleconfig : 输出一个配置文件的例子</p>
+<p>validateconfig &lt;配置文件的路径&gt; ： 验证该配置文件是否有效</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/" data-id="cj32w2y740000rts6jj4zg3c9" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-xcode8升级后基于XCUITest进行自动化测试的踩坑之旅" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" class="article-date">
+  <time datetime="2017-05-24T10:57:25.000Z" itemprop="datePublished">yyyy-57-三</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/">xcode8升级后基于XCUITest进行自动化测试的踩坑之旅</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>自从xcode8与ios10发布之后，使用appium做ios自动化测试的就苦逼了。appium团队在连续发布1.6的三个beat版本试用之后总是有这样那样的问题，不过还是怀着一颗兴奋的心情迫不及待的投入试用过程中，试用过程如下：  </p>
+</blockquote>
+<p><em>首先需要强调的是，由于这个还是beta版本，很多东西都需要源码进行，所以重要的事情强调三遍：安装新版appium请翻墙！安装新版appium请翻墙！安装新版appium请翻墙！</em>  </p>
+<h2 id="appium-1-6的npm安装"><a href="#appium-1-6的npm安装" class="headerlink" title="appium 1.6的npm安装"></a>appium 1.6的npm安装</h2><p><code>npm install -g appium@beta</code>  </p>
+<ul>
+<li>安装新版appium首先需要将本地的老版本appium删除  </li>
+<li>新版appium安装需要依赖的node版本需要是最新版的(我也不知道为什么，网上也没有找到原因，但是升级了最新的node后安装就莫名其妙的搞定了)<br>我本地的版本如下所示：<br><code>~ npm --version  
+3.10.8  
+~ node --version  
+v7.0.0</code>    <h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层依赖" class="headerlink" title="appium1.6的底层依赖"></a>appium1.6的底层依赖</h2>appium1.6会用到webdriverAgent,按照如下链接安装<br><a href="https://github.com/facebook/WebDriverAgent" target="_blank" rel="external">WebDriverAgent</a>  <h2 id="修改所依赖的jar包"><a href="#修改所依赖的jar包" class="headerlink" title="修改所依赖的jar包"></a>修改所依赖的jar包</h2>实际在跑case的时候，总会遇到各种各样的报错，当时着急找方案解决，忘记记录下报错信息了，尴尬ing。。。<br>总结起来appium升级后对于本地的影响最大的还是做依赖的jar包版本，特别是基于某些内部的框架进行编写时，需要修改的jar包主要是selenium相关的各种jar包，具体修改的jar包如下：  </li>
+</ul>
+
+        
+          <p class="article-more-link">
+            <a href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj32w2y7e0002rts6c93subk7" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/24/test/" class="article-date">
-  <time datetime="2017-05-24T10:30:13.000Z" itemprop="datePublished">2017-05-24</time>
+  <time datetime="2017-05-24T10:30:13.000Z" itemprop="datePublished">yyyy-30-三</time>
 </a>
     
   </div>
@@ -91,10 +193,15 @@
 <li>cdcdcd </li>
 </ol>
 <h2 id="Two"><a href="#Two" class="headerlink" title="Two"></a>Two</h2><h2 id="three"><a href="#three" class="headerlink" title="three"></a>three</h2>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/24/test/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/test/" data-id="cj32unz7v00016ps68q9xl0as" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/24/test/" data-id="cj32w2y7a0001rts6ur26ada9" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -107,7 +214,7 @@
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/24/hello-world/" class="article-date">
-  <time datetime="2017-05-24T10:09:55.000Z" itemprop="datePublished">2017-05-24</time>
+  <time datetime="2017-05-24T10:09:55.000Z" itemprop="datePublished">yyyy-09-三</time>
 </a>
     
   </div>
@@ -132,14 +239,15 @@
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/05/24/hello-world/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj32unz7p00006ps67q0w51z3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj32w2y7h0003rts6c67k54aw" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -164,7 +272,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
     </div>
@@ -174,9 +282,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小纪/">iOS静态代码扫描工具Fauxpas的使用小纪</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/">xcode8升级后基于XCUITest进行自动化测试的踩坑之旅</a>
+          </li>
         
           <li>
             <a href="/2017/05/24/test/">test</a>
