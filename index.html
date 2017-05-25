@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -63,6 +63,73 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-android客户端手动测试代码覆盖率统计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/25/android客户端手动测试代码覆盖率统计/" class="article-date">
+  <time datetime="2017-05-25T07:50:53.000Z" itemprop="datePublished">yyyy-50-四</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/25/android客户端手动测试代码覆盖率统计/">android客户端手动测试代码覆盖率统计</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文主要介绍如何通过内置打桩的方式收集app手工测试的代码覆盖率，以便于更直观的发现测试用例的不足  </p>
+</blockquote>
+<h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>本文主要是用的是jacoco插件，Jacoco是一个开源的覆盖率工具，Jacoco可以嵌入到Ant 、Maven中，并提供了EclEmma Eclipse插件,也可以使用JavaAgent技术监控Java程序。很多第三方的工具提供了对Jacoco的集成，如sonar、Jenkins等。<br>官网地址：<a href="http://www.eclemma.org/jacoco/" target="_blank" rel="external">JaCoCo Java Code Coverage Library</a><br>在实际是用过程中，与个人环境相关的由于缺少某些jar包的报错，都可以上述网站中下载对应的jar包并导入。<br>本文主要以博主在实际工作中遇到的某个app为例，总体分为四个步骤：</p>
+<ul>
+<li>打开收集覆盖率开关，并在create函数中添加结果收集文件</li>
+<li>在跑完测试case，关闭app时将结果写入收集文件</li>
+<li>添加生成测试报告的task</li>
+<li>将生成的覆盖文件编译生成报告</li>
+</ul>
+<h2 id="打开开关，并生成收集文件"><a href="#打开开关，并生成收集文件" class="headerlink" title="打开开关，并生成收集文件"></a>打开开关，并生成收集文件</h2><p>1、 添加包<br>在源码的app_instance中的build.gradle文件中，添加代码覆盖率需要依赖的编译包<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line"> <span class="function">compile <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></div><div class="line"> compile <span class="title">project</span><span class="params">(<span class="string">':framework:cupid'</span>)</span></div><div class="line"> debugCompile 'com.facebook.stetho:stetho:1.0.1'</div><div class="line"> debugCompile 'com.facebook.stetho:stetho-urlconnection:1.3.1'</div><div class="line"> debugCompile 'org.jacoco:org.jacoco.agent:0.7.6.201602180812' <span class="comment">//add by sxl for coverage</span></div><div class="line"> compile 'com.facebook.stetho:stetho:1.3.1'</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里需要注意的是，添加完编译时可以会遇到很多关于jar包依赖的报错，如下文提过的，需要手动下载jacoco相关的jar包放在本地lib库中并导入。<br>2、 打开debug中统计覆盖率开关<br>在项目正在运行的build.gradle中加入jacoco插件<br><code>apply plugin: &quot;jacoco&quot;</code><br>并修改buildType中的debug属性：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">debug &#123;</div><div class="line">minifyEnabled <span class="keyword">false</span></div><div class="line"> debuggable <span class="keyword">true</span></div><div class="line"> testCoverageEnabled <span class="keyword">true</span> <span class="comment">//add by sxl for coverage</span></div><div class="line"> minifyEnabled <span class="keyword">false</span></div><div class="line"> signingConfig signingConfigs.release</div><div class="line">ndk &#123;</div><div class="line">abiFilter <span class="string">"armeabi"</span></div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意，如果debug中有混淆，需要把混淆去掉。<br>3、 添加收集文件<br>app启动时创建覆盖率统计coverage.ec文件<br>需要在app启动的文件（AppInstanceApplicationCallback.java）中的onCreate函数中添加如下代码：</p>
+<pre><code class="java"><span class="keyword">if</span> (BuildConfig.DEBUG){
+    String SDCARD_PATH = Environment.getExternalStorageDirectory().getPath();
+    String DEFAULT_COVERAGE_FILE_PATH = SDCARD_PATH + <span class="string">"/coverage.ec"</span>;
+    File file = <span class="keyword">new</span> File(DEFAULT_COVERAGE_FILE_PATH);
+    <span class="keyword">if</span> (!file.exists()) {
+        <span class="keyword">try</span> {
+            file.createNewFile();
+        } <span class="keyword">catch</span> (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<h2 id="关闭app时，收集统计的数据"><a href="#关闭app时，收集统计的数据" class="headerlink" title="关闭app时，收集统计的数据"></a>关闭app时，收集统计的数据</h2>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/25/android客户端手动测试代码覆盖率统计/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/25/android客户端手动测试代码覆盖率统计/" data-id="cj34antlq0000x5s6qc8z51fp" class="article-share-link">Delen</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-iOS静态代码扫描工具Fauxpas的使用小记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -103,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" data-id="cj343jc4i0000gms6egh5ti94" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" data-id="cj34antlz0002x5s6gxb4x94w" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -156,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj343jc4o0001gms6fk0m11sq" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj34antm10003x5s6a9y4fbii" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -202,7 +269,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj343jc4r0002gms6c31pjn03" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj34antlw0001x5s6uxj681od" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -227,7 +294,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
     </div>
@@ -237,9 +304,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/05/25/android客户端手动测试代码覆盖率统计/">android客户端手动测试代码覆盖率统计</a>
+          </li>
         
           <li>
             <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/">iOS静态代码扫描工具Fauxpas的使用小记</a>
@@ -266,7 +337,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 单晓兰<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
