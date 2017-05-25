@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" data-id="cj341qsyg0000qes6pylowx7w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" data-id="cj342mox80000yzs6l3wz3ngu" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -142,25 +142,12 @@
 <h2 id="appium-1-6的npm安装"><a href="#appium-1-6的npm安装" class="headerlink" title="appium 1.6的npm安装"></a>appium 1.6的npm安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g appium@beta</div></pre></td></tr></table></figure>
 <ul>
 <li>安装新版appium首先需要将本地的老版本appium删除  </li>
-<li>新版appium安装需要依赖的node版本需要是最新版的(我也不知道为什么，网上也没有找到原因，但是升级了最新的node后安装就莫名其妙的搞定了)<br>我本地的版本如下所示：   <pre><code class="shell">~ npm --version  
-3.10.8  
-~ node --version  
-v7.0.0
-</code></pre>
-<h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层依赖" class="headerlink" title="appium1.6的底层依赖"></a>appium1.6的底层依赖</h2>appium1.6会用到webdriverAgent,按照如下链接安装<br><a href="https://github.com/facebook/WebDriverAgent" target="_blank" rel="external">WebDriverAgent</a>  <h2 id="修改所依赖的jar包"><a href="#修改所依赖的jar包" class="headerlink" title="修改所依赖的jar包"></a>修改所依赖的jar包</h2>实际在跑case的时候，总会遇到各种各样的报错，当时着急找方案解决，忘记记录下报错信息了，尴尬ing。。。<br>总结起来appium升级后对于本地的影响最大的还是做依赖的jar包版本，特别是基于某些内部的框架进行编写时，需要修改的jar包主要是selenium相关的各种jar包，具体修改的jar包与版本如下：<pre><code class="shell">-rw-r--r--   1 didi  staff    94973 11 28 19:03 selenium-api-3.0.1.jar
--rw-r--r--   1 didi  staff     9567 11 28 19:05 selenium-chrome-driver-3.0.1.jar
--rw-r--r--   1 didi  staff     4907 11 28 19:06 selenium-edge-driver-3.0.1.jar
--rw-r--r--   1 didi  staff   764941 11 28 19:07 selenium-firefox-driver-3.0.1.jar
--rw-r--r--   1 didi  staff     9816 11 28 19:07 selenium-ie-driver-3.0.1.jar
--rw-r--r--   1 didi  staff      379 11 28 19:08 selenium-java-3.0.1.jar
--rw-r--r--   1 didi  staff     7829 11 28 19:08 selenium-opera-driver-3.0.1.jar
--rw-r--r--   1 didi  staff   310403 11 28 19:10 selenium-remote-driver-3.0.1.jar
--rw-r--r--   1 didi  staff    37999 11 28 19:11 selenium-safari-driver-3.0.1.jar
--rw-r--r--   1 didi  staff   170335 11 28 19:12 selenium-support-3.0.1.jar
-</code></pre>
-PS：如何下载以及导入jar包，自行搜索   <h2 id="对脚本影响最大的就是基于xpath识别的控件"><a href="#对脚本影响最大的就是基于xpath识别的控件" class="headerlink" title="对脚本影响最大的就是基于xpath识别的控件"></a>对脚本影响最大的就是基于xpath识别的控件</h2></li>
+<li>新版appium安装需要依赖的node版本需要是最新版的(我也不知道为什么，网上也没有找到原因，但是升级了最新的node后安装就莫名其妙的搞定了)<br>我本地的版本如下所示：   <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">~ npm --version  </div><div class="line">3.10.8  </div><div class="line">~ node --version  </div><div class="line">v7.0.0</div></pre></td></tr></table></figure>
+</li>
 </ul>
-
+<h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层依赖" class="headerlink" title="appium1.6的底层依赖"></a>appium1.6的底层依赖</h2><p>appium1.6会用到webdriverAgent,按照如下链接安装<br><a href="https://github.com/facebook/WebDriverAgent" target="_blank" rel="external">WebDriverAgent</a>  </p>
+<h2 id="修改所依赖的jar包"><a href="#修改所依赖的jar包" class="headerlink" title="修改所依赖的jar包"></a>修改所依赖的jar包</h2><p>实际在跑case的时候，总会遇到各种各样的报错，当时着急找方案解决，忘记记录下报错信息了，尴尬ing。。。<br>总结起来appium升级后对于本地的影响最大的还是做依赖的jar包版本，特别是基于某些内部的框架进行编写时，需要修改的jar包主要是selenium相关的各种jar包，具体修改的jar包与版本如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-rw-r--r--   1 didi  staff    94973 11 28 19:03 selenium-api-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     9567 11 28 19:05 selenium-chrome-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     4907 11 28 19:06 selenium-edge-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff   764941 11 28 19:07 selenium-firefox-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     9816 11 28 19:07 selenium-ie-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff      379 11 28 19:08 selenium-java-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     7829 11 28 19:08 selenium-opera-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff   310403 11 28 19:10 selenium-remote-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff    37999 11 28 19:11 selenium-safari-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff   170335 11 28 19:12 selenium-support-3.0.1.jar</div></pre></td></tr></table></figure></p>
+<p>PS：如何下载以及导入jar包，自行搜索   </p>
         
           <p class="article-more-link">
             <a href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/#more">Read More</a>
@@ -169,7 +156,7 @@ PS：如何下载以及导入jar包，自行搜索   <h2 id="对脚本影响最�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj341qsyq0002qes6qc73mhoi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj342moy80003yzs6cakmyl1u" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -214,7 +201,7 @@ PS：如何下载以及导入jar包，自行搜索   <h2 id="对脚本影响最�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/test/" data-id="cj341qsyl0001qes6hjzht23u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/24/test/" data-id="cj342moxt0001yzs66fr4fet2" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -260,7 +247,7 @@ PS：如何下载以及导入jar包，自行搜索   <h2 id="对脚本影响最�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj341qsyt0003qes6gpokpu9g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj342moxw0002yzs65q0b56cy" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -295,7 +282,7 @@ PS：如何下载以及导入jar包，自行搜索   <h2 id="对脚本影响最�
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -328,7 +315,7 @@ PS：如何下载以及导入jar包，自行搜索   <h2 id="对脚本影响最�
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 单晓兰<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
