@@ -1,152 +1,395 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>iOS:objective-c实现定位当前城市 | 兰小妞滴Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言：刚开始入门iOS时，看了几天的理论知识后，就开始着手写一个简单的天气预报程序练手。过程中就遇到了首页需要根据定位出的城市获取天气的问题，于是搜索了一下获取定位相关的知识，整理如下.根据个人学习是的习惯，觉得网上大神的解答最好能有个简单的demo可供参考最好，所以本人写了个简单的获取定位的demo：  标注一下demo源码位置iOS Objective-C获取定位城市demo  导入头文件并请">
+
+
+<html class="theme-next muse use-motion" lang="zh-cn">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="前言：刚开始入门iOS时，看了几天的理论知识后，就开始着手写一个简单的天气预报程序练手。过程中就遇到了首页需要根据定位出的城市获取天气的问题，于是搜索了一下获取定位相关的知识，整理如下.根据个人学习是的习惯，觉得网上大神的解答最好能有个简单的demo可供参考最好，所以本人写了个简单的获取定位的demo：  标注一下demo源码位置iOS Objective-C获取定位城市demo  导入头文件并请">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS:objective-c实现定位当前城市">
 <meta property="og:url" content="http://yoursite.com/2017/05/25/iOS-objective-c实现定位当前城市/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
 <meta property="og:description" content="前言：刚开始入门iOS时，看了几天的理论知识后，就开始着手写一个简单的天气预报程序练手。过程中就遇到了首页需要根据定位出的城市获取天气的问题，于是搜索了一下获取定位相关的知识，整理如下.根据个人学习是的习惯，觉得网上大神的解答最好能有个简单的demo可供参考最好，所以本人写了个简单的获取定位的demo：  标注一下demo源码位置iOS Objective-C获取定位城市demo  导入头文件并请">
-<meta property="og:updated_time" content="2017-05-26T10:31:34.000Z">
+<meta property="og:image" content="http://yoursite.com/images/infoplist.png">
+<meta property="og:updated_time" content="2017-05-26T11:22:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS:objective-c实现定位当前城市">
 <meta name="twitter:description" content="前言：刚开始入门iOS时，看了几天的理论知识后，就开始着手写一个简单的天气预报程序练手。过程中就遇到了首页需要根据定位出的城市获取天气的问题，于是搜索了一下获取定位相关的知识，整理如下.根据个人学习是的习惯，觉得网上大神的解答最好能有个简单的demo可供参考最好，所以本人写了个简单的获取定位的demo：  标注一下demo源码位置iOS Objective-C获取定位城市demo  导入头文件并请">
-  
-    <link rel="alternate" href="/atom.xml" title="兰小妞滴Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
+<meta name="twitter:image" content="http://yoursite.com/images/infoplist.png">
 
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/25/iOS-objective-c实现定位当前城市/"/>
+
+
+
+
+
+  <title>iOS:objective-c实现定位当前城市 | 兰小妞滴Blog</title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">兰小妞滴Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-iOS-objective-c实现定位当前城市" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/25/iOS-objective-c实现定位当前城市/" class="article-date">
-  <time datetime="2017-05-25T10:51:48.000Z" itemprop="datePublished">yyyy-51-四</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      iOS:objective-c实现定位当前城市
-    </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+
   
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">兰小妞滴Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/25/iOS-objective-c实现定位当前城市/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="单晓兰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兰小妞滴Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS:objective-c实现定位当前城市</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:51:48+08:00">
+                yyyy-51-四
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p>前言：刚开始入门iOS时，看了几天的理论知识后，就开始着手写一个简单的天气预报程序练手。过程中就遇到了首页需要根据定位出的城市获取天气的问题，于是搜索了一下获取定位相关的知识，整理如下.<br>根据个人学习是的习惯，觉得网上大神的解答最好能有个简单的demo可供参考最好，所以本人写了个简单的获取定位的demo：</p>
 <blockquote>
 <p>标注一下demo源码位置<a href="https://github.com/gysxl/CoreLocationDemo.git" target="_blank" rel="external">iOS Objective-C获取定位城市demo</a></p>
 </blockquote>
-<h2 id="导入头文件并请求授权"><a href="#导入头文件并请求授权" class="headerlink" title="导入头文件并请求授权"></a>导入头文件并请求授权</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#import &lt;CoreLocation/CoreLocation.h&gt;</div><div class="line">```  </div><div class="line">修改info.plist文件，添加获取定位行为以及配置选项。如下图：</div><div class="line">![info.plist信息](/Users/didi/Blog/hexo/source/_posts/infoplist.png)  </div><div class="line">可以只添加需要时使用：`Privacy - Location When In Use Usage Description`</div><div class="line"></div><div class="line">## 创建位置管理者CLLocationManager，并添加到属性  </div><div class="line">```objective-c</div><div class="line">@property (nonatomic,strong) CLLocationManager *locationManager;</div></pre></td></tr></table></figure>
+<h2 id="导入头文件并请求授权"><a href="#导入头文件并请求授权" class="headerlink" title="导入头文件并请求授权"></a>导入头文件并请求授权</h2><ul>
+<li><p>导入头文件</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;CoreLocation/CoreLocation.h&gt;</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>修改info.plist  </p>
+</li>
+</ul>
+<p>修改info.plist文件，添加获取定位行为以及配置选项。如下图：<br><img src="/images/infoplist.png" alt=""><br>可以只添加需要时使用：<code>Privacy - Location When In Use Usage Description</code></p>
+<h2 id="创建位置管理者CLLocationManager，并添加到属性"><a href="#创建位置管理者CLLocationManager，并添加到属性" class="headerlink" title="创建位置管理者CLLocationManager，并添加到属性"></a>创建位置管理者CLLocationManager，并添加到属性</h2>  <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">CLLocationManager</span> *locationManager;</div></pre></td></tr></table></figure>
 <h2 id="判断是否开启了定位服务"><a href="#判断是否开启了定位服务" class="headerlink" title="判断是否开启了定位服务"></a>判断是否开启了定位服务</h2><ul>
-<li><p>在程序启动时需要先判断是否开启了定位</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if ([CLLocationManager locationServicesEnabled]) &#123; // 判断是否打开了位置服务</div><div class="line">      self.locationManager = [[CLLocationManager alloc] init];//初始化定位器</div><div class="line">      [self.locationManager startUpdatingLocation]; // 启动定位器</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<li><p>在程序启动时需要先判断是否开启了定位  </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ([<span class="built_in">CLLocationManager</span> locationServicesEnabled]) &#123; <span class="comment">// 判断是否打开了位置服务</span></div><div class="line">      <span class="keyword">self</span>.locationManager = [[<span class="built_in">CLLocationManager</span> alloc] init];<span class="comment">//初始化定位器</span></div><div class="line">      [<span class="keyword">self</span>.locationManager startUpdatingLocation]; <span class="comment">// 启动定位器</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>设置定位器的其他属性<br>在初始化定位器后，需要设置其delegate以及其他属性  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">if ([CLLocationManager locationServicesEnabled])&#123;</div><div class="line">        self.locationManager = [[CLLocationManager alloc] init];//初始化定位器</div><div class="line">        self.locationManager.delegate = self; //设置代理</div><div class="line">        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;//设置精确度</div><div class="line">        self.locationManager.distanceFilter = 100;//表明每隔100米更新一次定位信息</div><div class="line">        [self.locationManager requestWhenInUseAuthorization];//使用的是requestWhenInUseAuthorization方法</div><div class="line">        self.currentCity = [[NSString alloc] init];</div><div class="line">        [self.locationManager startUpdatingLocation];//启动定位器</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> ([<span class="built_in">CLLocationManager</span> locationServicesEnabled])&#123;</div><div class="line">        <span class="keyword">self</span>.locationManager = [[<span class="built_in">CLLocationManager</span> alloc] init];<span class="comment">//初始化定位器</span></div><div class="line">        <span class="keyword">self</span>.locationManager.delegate = <span class="keyword">self</span>; <span class="comment">//设置代理</span></div><div class="line">        <span class="keyword">self</span>.locationManager.desiredAccuracy = kCLLocationAccuracyBest;<span class="comment">//设置精确度</span></div><div class="line">        <span class="keyword">self</span>.locationManager.distanceFilter = <span class="number">100</span>;<span class="comment">//表明每隔100米更新一次定位信息</span></div><div class="line">        [<span class="keyword">self</span>.locationManager requestWhenInUseAuthorization];<span class="comment">//使用的是requestWhenInUseAuthorization方法</span></div><div class="line">        <span class="keyword">self</span>.currentCity = [[<span class="built_in">NSString</span> alloc] init];</div><div class="line">        [<span class="keyword">self</span>.locationManager startUpdatingLocation];<span class="comment">//启动定位器</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="监听定位信息"><a href="#监听定位信息" class="headerlink" title="监听定位信息"></a>监听定位信息</h2><ul>
 <li><p>定位成功时调用  </p>
-<pre><code class="Objective-C">\- (void)locationManager:(CLLocationManager \*)manager didUpdateLocations:(NSArray&lt;CLLocation \*&gt; \*)locations{
-  [self.locationManager stopUpdatingLocation];
-  CLLocation \*currentLocation = [locations lastObject];
-  CLGeocoder \*geoCoder = [[CLGeocoder alloc] init];
+<pre><code class="objc">- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didUpdateLocations:(<span class="built_in">NSArray</span>&lt;<span class="built_in">CLLocation</span> *&gt; *)locations{
+    [<span class="keyword">self</span>.locationManager stopUpdatingLocation];
+    <span class="built_in">CLLocation</span> *currentLocation = [locations lastObject];
+    <span class="built_in">CLGeocoder</span> *geoCoder = [[<span class="built_in">CLGeocoder</span> alloc] init];
 
-  //反编码
-  [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray&lt;CLPlacemark \*&gt; \* _Nullable placemarks, NSError \* _Nullable error){
-      if (placemarks.count &gt; 0){
-          CLPlacemark \*placeMark = placemarks[0];
-          self.currentCity = placeMark.locality;
-          if (!self.currentCity){
-              self.currentCity = @&quot;无法定位当前城市&quot;;
-          }
-          self.cityLable.text = self.currentCity;
-          NSLog(@&quot;%@&quot;,self.currentCity);
-      }
-      else if (error == nil&amp;&amp; placemarks.count ==0){
-          NSLog(@&quot;No location and error return&quot;);
-      }
-      else if (error){
-          NSLog(@&quot;location error: %@ &quot;,error);
-      }
-  }];
+    <span class="comment">//反编码</span>
+    [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(<span class="built_in">NSArray</span>&lt;<span class="built_in">CLPlacemark</span> *&gt; * _Nullable placemarks, <span class="built_in">NSError</span> * _Nullable error){
+        <span class="keyword">if</span> (placemarks.count &gt; <span class="number">0</span>){
+            <span class="built_in">CLPlacemark</span> *placeMark = placemarks[<span class="number">0</span>];
+            <span class="keyword">self</span>.currentCity = placeMark.locality;
+            <span class="keyword">if</span> (!<span class="keyword">self</span>.currentCity){
+                <span class="keyword">self</span>.currentCity = <span class="string">@"无法定位当前城市"</span>;
+            }
+            <span class="keyword">self</span>.cityLable.text = <span class="keyword">self</span>.currentCity;
+            <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,<span class="keyword">self</span>.currentCity);
+        }
+        <span class="keyword">else</span> <span class="keyword">if</span> (error == <span class="literal">nil</span>&amp;&amp; placemarks.count ==<span class="number">0</span>){
+            <span class="built_in">NSLog</span>(<span class="string">@"No location and error return"</span>);
+        }
+        <span class="keyword">else</span> <span class="keyword">if</span> (error){
+            <span class="built_in">NSLog</span>(<span class="string">@"location error: %@ "</span>,error);
+        }
+    }];
 }
 </code></pre>
 </li>
-<li>定位失败时调用<br>demo中定位失败只是简单的弹起alert，具体的alert内容下面会介绍<pre><code class="objective-c">//定位失败的异常处理
-\- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-      [self showLocationAlert];
+<li><p>定位失败时调用<br>demo中定位失败只是简单的弹起alert，具体的alert内容下面会介绍</p>
+<pre><code class="objc"><span class="comment">//定位失败的异常处理</span>
+- (<span class="keyword">void</span>)locationManager:(<span class="built_in">CLLocationManager</span> *)manager didFailWithError:(<span class="built_in">NSError</span> *)error {
+        [<span class="keyword">self</span> showLocationAlert];
 }
 </code></pre>
 </li>
 <li><p>定位异常处理<br>这里所谓的处理异常是在定位未开启时，弹出alert并引导去打开定位的操作，所以需要在设置定位器的<code>[CLLocationManager locationServicesEnabled]</code>返回nil时调用<code>[self showLocationAlert];</code><br>具体alert中的内容如下：</p>
-<pre><code class="objective-c">//定位失败弹出提示框
-\-(void)showLocationAlert{
-  UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@&quot;允许\&quot;定位\&quot;提示&quot; message:@&quot;请在设置中打开定位&quot; preferredStyle:UIAlertControllerStyleAlert];
-  UIAlertAction * ok = [UIAlertAction actionWithTitle:@&quot;打开定位&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-      //打开定位设置
-      NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-      [[UIApplication sharedApplication] openURL:settingsURL];
-  }];
-  UIAlertAction * cancel = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+<pre><code class="objc"><span class="comment">//定位失败弹出提示框</span>
+-(<span class="keyword">void</span>)showLocationAlert{
+    <span class="built_in">UIAlertController</span> * alertVC = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@"允许\"定位\"提示"</span> message:<span class="string">@"请在设置中打开定位"</span> preferredStyle:<span class="built_in">UIAlertControllerStyleAlert</span>];
+    <span class="built_in">UIAlertAction</span> * ok = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"打开定位"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
+        <span class="comment">//打开定位设置</span>
+        <span class="built_in">NSURL</span> *settingsURL = [<span class="built_in">NSURL</span> URLWithString:<span class="built_in">UIApplicationOpenSettingsURLString</span>];
+        [[<span class="built_in">UIApplication</span> sharedApplication] openURL:settingsURL];
+    }];
+    <span class="built_in">UIAlertAction</span> * cancel = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"取消"</span> style:<span class="built_in">UIAlertActionStyleCancel</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) {
 
-  }];
-  [alertVC addAction:cancel];
-  [alertVC addAction:ok];
-  [self presentViewController:alertVC animated:YES completion:nil];
+    }];
+    [alertVC addAction:cancel];
+    [alertVC addAction:ok];
+    [<span class="keyword">self</span> presentViewController:alertVC animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
 }
 </code></pre>
 <p>demo源码位置再次贴出<br><a href="https://github.com/gysxl/CoreLocationDemo.git" target="_blank" rel="external">iOS Objective-C获取定位城市demo</a></p>
@@ -155,120 +398,341 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/25/iOS-objective-c实现定位当前城市/" data-id="cj35pk4yr00014os63guevmkd" class="article-share-link">Share</a>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/25/android客户端手动测试代码覆盖率统计/" rel="next" title="android客户端手动测试代码覆盖率统计">
+                <i class="fa fa-chevron-left"></i> android客户端手动测试代码覆盖率统计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/25/UITableView-基本使用方法总结/" rel="prev" title="UITableView 基本使用方法总结">
+                UITableView 基本使用方法总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
       
       
     </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
-  
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-<nav id="article-nav">
-  
-    <a href="/2017/05/25/UITableView-基本使用方法总结/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+  </div>
+
+
+        </div>
         
-          UITableView 基本使用方法总结
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="单晓兰" />
+          <p class="site-author-name" itemprop="name">单晓兰</p>
+           
+              <p class="site-description motion-element" itemprop="description">学习，积累，成长</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入头文件并请求授权"><span class="nav-number">1.</span> <span class="nav-text">导入头文件并请求授权</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建位置管理者CLLocationManager，并添加到属性"><span class="nav-number">2.</span> <span class="nav-text">创建位置管理者CLLocationManager，并添加到属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否开启了定位服务"><span class="nav-number">3.</span> <span class="nav-text">判断是否开启了定位服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听定位信息"><span class="nav-number">4.</span> <span class="nav-text">监听定位信息</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-    </a>
-  
-  
-    <a href="/2017/05/25/android客户端手动测试代码覆盖率统计/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">android客户端手动测试代码覆盖率统计</div>
-    </a>
-  
-</nav>
+    </main>
 
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
-    </div>
-  </div>
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">单晓兰</span>
+</div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/05/25/UITableView-基本使用方法总结/">UITableView 基本使用方法总结</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/25/iOS-objective-c实现定位当前城市/">iOS:objective-c实现定位当前城市</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/25/android客户端手动测试代码覆盖率统计/">android客户端手动测试代码覆盖率统计</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/">iOS静态代码扫描工具Fauxpas的使用小记</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/">xcode8升级后基于XCUITest进行自动化测试的踩坑之旅</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
 
-  
-</aside>
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 单晓兰<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
