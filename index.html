@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -90,7 +90,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/25/UITableView-基本使用方法总结/" data-id="cj34augxi00010ms61qpe7w0o" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/25/UITableView-基本使用方法总结/" data-id="cj35pk4yu00024os6m9da80sm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -122,11 +122,83 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p>前言：刚开始入门iOS时，看了几天的理论知识后，就开始着手写一个简单的天气预报程序练手。过程中就遇到了首页需要根据定位出的城市获取天气的问题，于是搜索了一下获取定位相关的知识，整理如下.<br>根据个人学习是的习惯，觉得网上大神的解答最好能有个简单的demo可供参考最好，所以本人写了个简单的获取定位的demo：</p>
+<blockquote>
+<p>标注一下demo源码位置<a href="https://github.com/gysxl/CoreLocationDemo.git" target="_blank" rel="external">iOS Objective-C获取定位城市demo</a></p>
+</blockquote>
+<h2 id="导入头文件并请求授权"><a href="#导入头文件并请求授权" class="headerlink" title="导入头文件并请求授权"></a>导入头文件并请求授权</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#import &lt;CoreLocation/CoreLocation.h&gt;</div><div class="line">```  </div><div class="line">修改info.plist文件，添加获取定位行为以及配置选项。如下图：</div><div class="line">![info.plist信息](/Users/didi/Blog/hexo/source/_posts/infoplist.png)  </div><div class="line">可以只添加需要时使用：`Privacy - Location When In Use Usage Description`</div><div class="line"></div><div class="line">## 创建位置管理者CLLocationManager，并添加到属性  </div><div class="line">```objective-c</div><div class="line">@property (nonatomic,strong) CLLocationManager *locationManager;</div></pre></td></tr></table></figure>
+<h2 id="判断是否开启了定位服务"><a href="#判断是否开启了定位服务" class="headerlink" title="判断是否开启了定位服务"></a>判断是否开启了定位服务</h2><ul>
+<li><p>在程序启动时需要先判断是否开启了定位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if ([CLLocationManager locationServicesEnabled]) &#123; // 判断是否打开了位置服务</div><div class="line">      self.locationManager = [[CLLocationManager alloc] init];//初始化定位器</div><div class="line">      [self.locationManager startUpdatingLocation]; // 启动定位器</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置定位器的其他属性<br>在初始化定位器后，需要设置其delegate以及其他属性  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">if ([CLLocationManager locationServicesEnabled])&#123;</div><div class="line">        self.locationManager = [[CLLocationManager alloc] init];//初始化定位器</div><div class="line">        self.locationManager.delegate = self; //设置代理</div><div class="line">        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;//设置精确度</div><div class="line">        self.locationManager.distanceFilter = 100;//表明每隔100米更新一次定位信息</div><div class="line">        [self.locationManager requestWhenInUseAuthorization];//使用的是requestWhenInUseAuthorization方法</div><div class="line">        self.currentCity = [[NSString alloc] init];</div><div class="line">        [self.locationManager startUpdatingLocation];//启动定位器</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="监听定位信息"><a href="#监听定位信息" class="headerlink" title="监听定位信息"></a>监听定位信息</h2><ul>
+<li><p>定位成功时调用  </p>
+<pre><code class="Objective-C">\- (void)locationManager:(CLLocationManager \*)manager didUpdateLocations:(NSArray&lt;CLLocation \*&gt; \*)locations{
+  [self.locationManager stopUpdatingLocation];
+  CLLocation \*currentLocation = [locations lastObject];
+  CLGeocoder \*geoCoder = [[CLGeocoder alloc] init];
+
+  //反编码
+  [geoCoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray&lt;CLPlacemark \*&gt; \* _Nullable placemarks, NSError \* _Nullable error){
+      if (placemarks.count &gt; 0){
+          CLPlacemark \*placeMark = placemarks[0];
+          self.currentCity = placeMark.locality;
+          if (!self.currentCity){
+              self.currentCity = @&quot;无法定位当前城市&quot;;
+          }
+          self.cityLable.text = self.currentCity;
+          NSLog(@&quot;%@&quot;,self.currentCity);
+      }
+      else if (error == nil&amp;&amp; placemarks.count ==0){
+          NSLog(@&quot;No location and error return&quot;);
+      }
+      else if (error){
+          NSLog(@&quot;location error: %@ &quot;,error);
+      }
+  }];
+}
+</code></pre>
+</li>
+<li>定位失败时调用<br>demo中定位失败只是简单的弹起alert，具体的alert内容下面会介绍<pre><code class="objective-c">//定位失败的异常处理
+\- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+      [self showLocationAlert];
+}
+</code></pre>
+</li>
+<li><p>定位异常处理<br>这里所谓的处理异常是在定位未开启时，弹出alert并引导去打开定位的操作，所以需要在设置定位器的<code>[CLLocationManager locationServicesEnabled]</code>返回nil时调用<code>[self showLocationAlert];</code><br>具体alert中的内容如下：</p>
+<pre><code class="objective-c">//定位失败弹出提示框
+\-(void)showLocationAlert{
+  UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@&quot;允许\&quot;定位\&quot;提示&quot; message:@&quot;请在设置中打开定位&quot; preferredStyle:UIAlertControllerStyleAlert];
+  UIAlertAction * ok = [UIAlertAction actionWithTitle:@&quot;打开定位&quot; style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+      //打开定位设置
+      NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+      [[UIApplication sharedApplication] openURL:settingsURL];
+  }];
+  UIAlertAction * cancel = [UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+  }];
+  [alertVC addAction:cancel];
+  [alertVC addAction:ok];
+  [self presentViewController:alertVC animated:YES completion:nil];
+}
+</code></pre>
+<p>demo源码位置再次贴出<br><a href="https://github.com/gysxl/CoreLocationDemo.git" target="_blank" rel="external">iOS Objective-C获取定位城市demo</a></p>
+</li>
+</ul>
+
+        
+          <p class="article-more-link">
+            <a href="/2017/05/25/iOS-objective-c实现定位当前城市/#more">Read More</a>
+          </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/25/iOS-objective-c实现定位当前城市/" data-id="cj34augxo00040ms6j0ji72p8" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/25/iOS-objective-c实现定位当前城市/" data-id="cj35pk4yr00014os63guevmkd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -193,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/25/android客户端手动测试代码覆盖率统计/" data-id="cj34augxb00000ms6yb587w0w" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/25/android客户端手动测试代码覆盖率统计/" data-id="cj35pk4ym00004os6vaxobi9d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -242,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" data-id="cj34augxo00030ms6pdnyny4x" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/" data-id="cj35pk4z100054os6h70wrj1u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -295,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj34augy300050ms6qogninmp" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" data-id="cj35pk4yw00034os65bo3mxp5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -341,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj34augxl00020ms61690f1ke" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/24/hello-world/" data-id="cj35pk4yy00044os6tr5o6uop" class="article-share-link">Share</a>
       
       
     </footer>
@@ -376,7 +448,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -413,7 +485,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 单晓兰<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
