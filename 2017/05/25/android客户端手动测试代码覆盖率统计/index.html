@@ -96,10 +96,13 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/25/android客户端手动测试代码覆盖率统计/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
 <meta property="og:description" content="本文主要介绍如何通过内置打桩的方式收集app手工测试的代码覆盖率，以便于更直观的发现测试用例的不足    总体介绍本文主要是用的是jacoco插件，Jacoco是一个开源的覆盖率工具，Jacoco可以嵌入到Ant 、Maven中，并提供了EclEmma Eclipse插件,也可以使用JavaAgent技术监控Java程序。很多第三方的工具提供了对Jacoco的集成，如sonar、Jenkins等">
-<meta property="og:updated_time" content="2017-05-25T10:49:17.000Z">
+<meta property="og:image" content="http://yoursite.com/images/report.png">
+<meta property="og:image" content="http://yoursite.com/images/example.png">
+<meta property="og:updated_time" content="2017-05-27T06:26:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android客户端手动测试代码覆盖率统计">
 <meta name="twitter:description" content="本文主要介绍如何通过内置打桩的方式收集app手工测试的代码覆盖率，以便于更直观的发现测试用例的不足    总体介绍本文主要是用的是jacoco插件，Jacoco是一个开源的覆盖率工具，Jacoco可以嵌入到Ant 、Maven中，并提供了EclEmma Eclipse插件,也可以使用JavaAgent技术监控Java程序。很多第三方的工具提供了对Jacoco的集成，如sonar、Jenkins等">
+<meta name="twitter:image" content="http://yoursite.com/images/report.png">
 
 
 
@@ -200,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -210,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -280,7 +283,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T15:50:53+08:00">
                 May 25 2017
@@ -443,8 +446,7 @@ task <span class="title">mergeReport</span><span class="params">(type: JacocoRep
 <li>生成报告<br>在命令行中进入到test_app目录下，通过<code>gradle jacocoTestReport</code>生成报告  </li>
 <li>生成合并报告<br>将收集到的不同的coverage.ec文件均复制到build/outputs/code-coverage/connected，结尾保证为.ec文件不变，在命令行中进入到test-android-passenger目录下，通过./gradlew coverageMerge命令将收集到的ec文件合并成最终的coverageMerge.exec文件，该文件路径为build/jacoco/coverageMerge.exec<br>在保证改路径下生成了merge版的覆盖文件后，通过./gradlew mergeReport命令，生成覆盖版的测试报告。  </li>
 </ul>
-<h2 id="报告说明"><a href="#报告说明" class="headerlink" title="报告说明"></a>报告说明</h2><p>单个覆盖率报告所在路径为：app_instance/build/report/jacoco/jacocoTestReport/html/index.html<br>合并版覆盖率报告路径为：app_instance/build/report/jacoco/jacocoTestReport/html/index.html<br>Jacoco包含了多种尺度的覆盖率计数器,包含：<br>指令级(Instructions,C0coverage)，分支（Branches,C1coverage）、圈复杂度(CyclomaticComplexity)、行(Lines)、方法(non-abstract methods)、类(classes)。<br>报告如下图所示，从左向右分别是：<br>第一列：package<br>第二列：Instructions<br>第三列：Branches （if else 之关的分支）<br>第四列：CyclomaticComplexity<br>第五列：Lines<br>第六列：methods<br>第七列：classes  </p>
-<p>具体颜色定义：标示绿色的为分支覆盖充分，标黄色的为部分分支覆盖，标红色的为未执行该分支。</p>
+<h2 id="报告说明"><a href="#报告说明" class="headerlink" title="报告说明"></a>报告说明</h2><p>单个覆盖率报告所在路径为：app_instance/build/report/jacoco/jacocoTestReport/html/index.html<br>合并版覆盖率报告路径为：app_instance/build/report/jacoco/jacocoTestReport/html/index.html<br>Jacoco包含了多种尺度的覆盖率计数器,包含：<br>指令级(Instructions,C0coverage)，分支（Branches,C1coverage）、圈复杂度(CyclomaticComplexity)、行(Lines)、方法(non-abstract methods)、类(classes)。<br>报告如下图所示，从左向右分别是：<br>第一列：package<br>第二列：Instructions<br>第三列：Branches （if else 之关的分支）<br>第四列：CyclomaticComplexity<br>第五列：Lines<br>第六列：methods<br>第七列：classes<br><img src="/images/report.png" alt=""><br>单击左边的class，然后一层一层进入具体方法：<br><img src="/images/example.png" alt=""><br>具体颜色定义：标示绿色的为分支覆盖充分，标黄色的为部分分支覆盖，标红色的为未执行该分支。</p>
 
       
     </div>
@@ -542,10 +544,10 @@ task <span class="title">mergeReport</span><span class="params">(type: JacocoRep
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -566,7 +568,7 @@ task <span class="title">mergeReport</span><span class="params">(type: JacocoRep
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -636,7 +638,7 @@ task <span class="title">mergeReport</span><span class="params">(type: JacocoRep
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
