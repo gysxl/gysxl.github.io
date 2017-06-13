@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="学习，积累，成长">
+<meta name="description" content="前言：本篇小白入门介绍是紧接着上一篇继续的，在写天气预报的练手项目时，需要画个简单的table用来选择查看城市天气详情的东东，于是简单的研究了一下iOS关于UITableView的实现，还是老规矩，废话不说，先上UITableView的实现demo：  标注一下demo源码位置iOS Objective-C使用UITableView实现可上下滑动table功能    简单介绍简单来说，table">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableView 基本使用方法总结">
 <meta property="og:url" content="http://yoursite.com/2017/05/25/UITableView-基本使用方法总结/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
-<meta property="og:description" content="学习，积累，成长">
-<meta property="og:updated_time" content="2017-05-25T10:52:05.000Z">
+<meta property="og:description" content="前言：本篇小白入门介绍是紧接着上一篇继续的，在写天气预报的练手项目时，需要画个简单的table用来选择查看城市天气详情的东东，于是简单的研究了一下iOS关于UITableView的实现，还是老规矩，废话不说，先上UITableView的实现demo：  标注一下demo源码位置iOS Objective-C使用UITableView实现可上下滑动table功能    简单介绍简单来说，table">
+<meta property="og:updated_time" content="2017-06-13T08:32:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableView 基本使用方法总结">
-<meta name="twitter:description" content="学习，积累，成长">
+<meta name="twitter:description" content="前言：本篇小白入门介绍是紧接着上一篇继续的，在写天气预报的练手项目时，需要画个简单的table用来选择查看城市天气详情的东东，于是简单的研究了一下iOS关于UITableView的实现，还是老规矩，废话不说，先上UITableView的实现demo：  标注一下demo源码位置iOS Objective-C使用UITableView实现可上下滑动table功能    简单介绍简单来说，table">
 
 
 
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -258,7 +258,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="单晓兰">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/sxl.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -280,7 +280,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:52:05+08:00">
                 May 25 2017
@@ -317,7 +317,26 @@
       
 
       
-        
+        <p>前言：本篇小白入门介绍是紧接着上一篇继续的，在写天气预报的练手项目时，需要画个简单的table用来选择查看城市天气详情的东东，于是简单的研究了一下iOS关于UITableView的实现，还是老规矩，废话不说，先上UITableView的实现demo：</p>
+<blockquote>
+<p>标注一下demo源码位置<a href="https://github.com/gysxl/UITableViewDemo.git" target="_blank" rel="external">iOS Objective-C使用UITableView实现可上下滑动table功能</a>  </p>
+</blockquote>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>简单来说，table view就是在单个列里面显示一组列表项，UITableView继承于用户可滑动表格的UIScrollView，但是需要注意的是UITableView的只允许上下滑动。每个cell中可包含的内容可以自定义，若是你只想展示单个的文本或者其他信息，则对你来说UITableView的实现就相当简单了。具体操作如下：  </p>
+<h2 id="构造需要展示的数据信息"><a href="#构造需要展示的数据信息" class="headerlink" title="构造需要展示的数据信息"></a>构造需要展示的数据信息</h2><p>关于数据信息，最好在页面加载tableView之前就构造完成，我一般会写在整个页面的viewLoad方法中，具体代码如下（使用iOS自带的NSTimeZone去作为展示信息）：   </p>
+<ul>
+<li><p>声明全局变量  </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>) <span class="built_in">NSArray</span> *timeZoneNames;<span class="comment">//作为传参变量</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>构造展示信息，并赋值给全局变量  </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">  <span class="built_in">NSArray</span> *timeZones = [<span class="built_in">NSTimeZone</span> knownTimeZoneNames];</div><div class="line">  <span class="keyword">self</span>.timeZoneNames = [timeZones sortedArrayUsingSelector:<span class="keyword">@selector</span>(localizedStandardCompare:)];  </div><div class="line"></div><div class="line">  ```  </div><div class="line"></div><div class="line"><span class="meta">## 实现tableView的一些基本方法  </span></div><div class="line">* 返回 tableview 有多少个section的方法  </div><div class="line">首先需要简单介绍cell与section的意义。<span class="built_in">UITableView</span>的每一条数据对应的单元格叫做一个cell，也是<span class="built_in">UITableView</span>的一个对象。并且我们可以分区展示<span class="built_in">UITableView</span>，这样每个区就称为一个section，section中的每一行都从<span class="number">0</span>开始编号。楼主在网上盗了一张非常清晰明了的图片，如下：</div><div class="line">![](/images/<span class="built_in">UITableView</span>.png)  </div><div class="line">介绍完毕，上干货！！！！  </div><div class="line"> `- (<span class="built_in">NSInteger</span>)numberOfSectionsInTableView:(<span class="built_in">UITableView</span> *)tableView`这个方法就是oc提供的用于返回tableview有多少个section的方法。设置如下：</div><div class="line"></div><div class="line">  ```objc  </div><div class="line">  - (<span class="built_in">NSInteger</span>)numberOfSectionsInTableView:(<span class="built_in">UITableView</span> *)tableView</div><div class="line">  &#123;</div><div class="line">      <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  ```  </div><div class="line"></div><div class="line">ps:如果不实现该方法的话，默认返回一个section~~~  </div><div class="line">* 返回section中有多少个元素，也就是有几个cell   </div><div class="line"></div><div class="line">`- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)table numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section`这个方法主要用于返回每个section中有几个cell   </div><div class="line">具体设置如下：</div><div class="line"></div><div class="line">```objc</div><div class="line">- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section</div><div class="line">&#123;</div><div class="line"><span class="comment">//    return [self.array count];</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>.timeZoneNames.count;<span class="comment">//用来统计需要显示的timeZoneNames的个数</span></div><div class="line">&#125;</div><div class="line">```   </div><div class="line"></div><div class="line"><span class="meta">## tableview的cell的个性化定制</span></div><div class="line">完成上面两部的实现，基本上你就可以在界面上看到一个内容为空的表格了，下面就是最重要的一步：制各种个性化的 cell元素，也就是在这控制你的cell将显示成什么样子，或者在cell上展示什么信息。  </div><div class="line">`-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath`该方法用于返回制定的row的cell，用来个性化定制cell元素。  </div><div class="line">比如本例子中的最基础的在每个cell中返回时区内容，则需要对cell.textLable进行赋值。  </div><div class="line">```objc</div><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</div><div class="line">&#123;</div><div class="line">    <span class="comment">//定义个静态字符串为了防止与其他类的tableivew重复，定义cell的复用性当处理大量数据时减少内存开销</span></div><div class="line">    <span class="built_in">UITableViewCell</span> * cell =[tableView dequeueReusableCellWithIdentifier:<span class="string">@"myCell"</span>];</div><div class="line">    <span class="keyword">if</span>(!cell)</div><div class="line">    &#123;</div><div class="line">        cell =[[<span class="built_in">UITableViewCell</span> alloc] initWithStyle:<span class="built_in">UITableViewCellStyleDefault</span> reuseIdentifier:<span class="string">@"myCell"</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">NSString</span> *timeZoneName = <span class="keyword">self</span>.timeZoneNames[indexPath.row];</div><div class="line">    cell.textLabel.text = timeZoneName;</div><div class="line">    cell.selectionStyle = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">&#125;</div><div class="line">```  </div><div class="line">按照如上的操作之后就可以实现最基础的tableview了~~~不过这种简单的功能肯定不能满足日常的需求，所以后面会继续介绍tableview的其他功能。   </div><div class="line"><span class="meta">## cell中添加除了text之外的信息    </span></div><div class="line">* 首先要在Controller里实现两个delegate  </div><div class="line">     <span class="number">1</span>、分别是<span class="built_in">UITableViewDelegate</span>和<span class="built_in">UITableViewDataSource</span>，并且将<span class="built_in">UITableView</span>对象的delegate设置为<span class="keyword">self</span></div><div class="line">     <span class="number">2</span>、创建<span class="built_in">UITableView</span>并添加到属性中  </div><div class="line">     ```objc</div><div class="line">     <span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UITableView</span> *tableView;</div></pre></td></tr></table></figure>
+<p>   3、在viewDidLoad函数中，添加两个delegate的声明与赋值  </p>
+   <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> - (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">   [<span class="keyword">super</span> viewDidLoad];</div><div class="line">   <span class="keyword">self</span>.tableView = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="keyword">self</span>.view.frame.size.width, <span class="keyword">self</span>.view.frame.size.height) style:<span class="built_in">UITableViewStyleGrouped</span>];</div><div class="line">   <span class="keyword">self</span>.tableView.delegate = <span class="keyword">self</span>;</div><div class="line">   <span class="keyword">self</span>.tableView.dataSource = <span class="keyword">self</span>;</div><div class="line">   <span class="keyword">self</span>.tableView.backgroundView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">   [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.tableView];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>构造数据<br>一把我的习惯是把所有的数据构造写在viewDidLoad中，比如本次需要用到的图片以及数组<br>   1、首先创建连个全局变量  </p>
+   <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">     <span class="keyword">@property</span> (<span class="keyword">strong</span>,<span class="keyword">nonatomic</span>)<span class="built_in">NSArray</span> *array;</div><div class="line">     <span class="keyword">@property</span> (<span class="keyword">strong</span>,<span class="keyword">nonatomic</span>)<span class="built_in">NSArray</span> *arrayImage;</div><div class="line">     ```  </div><div class="line">     <span class="number">2</span>、在viewDidLoad函数中构造数据</div><div class="line">     ```objc</div><div class="line">     <span class="built_in">NSArray</span> *cityList = @[<span class="string">@"北京"</span>,<span class="string">@"上海"</span>,<span class="string">@"天津"</span>,<span class="string">@"杭州"</span>,<span class="string">@"武汉"</span>,<span class="string">@"南京"</span>,<span class="string">@"石家庄"</span>,<span class="string">@"深圳"</span>,<span class="string">@"广州"</span>,<span class="string">@"重庆"</span>,<span class="string">@"连云港"</span>];</div><div class="line">     <span class="built_in">NSMutableArray</span> *arrayValue = [[<span class="built_in">NSMutableArray</span> alloc]init];</div><div class="line">     <span class="built_in">NSMutableArray</span> *arrayImageValue = [[<span class="built_in">NSMutableArray</span> alloc]init];</div><div class="line">     <span class="built_in">NSInteger</span> cityNumber = cityList.count;</div><div class="line">     <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt; cityNumber; i++)</div><div class="line">     &#123;</div><div class="line">        <span class="built_in">NSString</span> *string = cityList[i];</div><div class="line">        <span class="built_in">NSString</span> *value = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>,string];</div><div class="line">        <span class="built_in">NSString</span> *imageName = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"image%ld.png"</span>,i];</div><div class="line">        <span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:imageName];</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"imageName == %@"</span>,imageName);</div><div class="line">        [arrayValue addObject:value];</div><div class="line">        [arrayImageValue addObject:image];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">self</span>.array = arrayValue;</div><div class="line">    <span class="keyword">self</span>.arrayImage = arrayImageValue;</div><div class="line">```  </div><div class="line">* 个性化定制cell  </div><div class="line">数据构造完成后就需要在上面提到过的个性化定制cell的函数中赋值  </div><div class="line">```objc</div><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</div><div class="line">&#123;</div><div class="line">    <span class="built_in">UITableViewCell</span> * cell =[tableView dequeueReusableCellWithIdentifier:<span class="string">@"myCell"</span>];</div><div class="line">    <span class="keyword">if</span>(!cell)</div><div class="line">    &#123;</div><div class="line">        cell =[[<span class="built_in">UITableViewCell</span> alloc] initWithStyle:<span class="built_in">UITableViewCellStyleDefault</span> reuseIdentifier:<span class="string">@"myCell"</span>];</div><div class="line">    &#125;</div><div class="line">    cell.imageView.image = [<span class="keyword">self</span>.arrayImage objectAtIndex:[indexPath row]];</div><div class="line">    cell.textLabel.text = [<span class="keyword">self</span>.array objectAtIndex:[indexPath row]];</div><div class="line">    cell.selectionStyle = <span class="built_in">UITableViewCellSelectionStyleNone</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">&#125;</div><div class="line">```  </div><div class="line"><span class="meta">## 添加cell被选中后的响应事件  </span></div><div class="line">`- (<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView didSelectRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath`函数是用户选中某个cell的时候的回调函数。</div><div class="line">    <span class="number">1</span>、设置cell的选中事件，首先需要设置tableview的一个属性为可以select才行  </div><div class="line"></div><div class="line">    ```objc</div><div class="line">    _tableView.allowsSelection = <span class="literal">YES</span>;<span class="comment">//该属性默认为YES</span></div><div class="line">    ```  </div><div class="line">    <span class="number">2</span>、实现选中某个cell后的操作，本实例中主要实现了一个Alert，具体代码如下所示：</div><div class="line">    ```objc  </div><div class="line">    -(<span class="keyword">void</span>)tableView:(<span class="built_in">UITableView</span> *)tableView didSelectRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">NSString</span> *timeZoneName = <span class="keyword">self</span>.timeZoneNames[indexPath.row];</div><div class="line">        <span class="built_in">UIActivityIndicatorView</span> *activityView=[[<span class="built_in">UIActivityIndicatorView</span> alloc]initWithActivityIndicatorStyle:<span class="built_in">UIActivityIndicatorViewStyleWhiteLarge</span>];</div><div class="line">        activityView.center=<span class="built_in">CGPointMake</span>(<span class="built_in">CGRectGetMidX</span>(<span class="keyword">self</span>.view.bounds), <span class="built_in">CGRectGetMidY</span>(<span class="keyword">self</span>.view.bounds));</div><div class="line">        activityView.color = [<span class="built_in">UIColor</span> redColor];</div><div class="line"></div><div class="line">        <span class="built_in">NSString</span> *titileString =[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"当前选中%@时区"</span>,timeZoneName];</div><div class="line">        <span class="built_in">UIAlertController</span> *alertview=[<span class="built_in">UIAlertController</span> alertControllerWithTitle:<span class="string">@"提示"</span> message:titileString preferredStyle:<span class="built_in">UIAlertControllerStyleAlert</span>];</div><div class="line">        <span class="built_in">UIAlertAction</span> *defult = [<span class="built_in">UIAlertAction</span> actionWithTitle:<span class="string">@"确定"</span> style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action)&#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"您点击了OK.."</span>);</div><div class="line"></div><div class="line">        &#125;];</div><div class="line">        [alertview addAction:defult];</div><div class="line">        [<span class="keyword">self</span> presentViewController:alertview animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
 
@@ -362,6 +381,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/iOS页面传值（Objective-C）/" rel="prev" title="iOS页面传值（Objective-C）">
+                iOS页面传值（Objective-C） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -408,11 +431,20 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/sxl.png"
                alt="单晓兰" />
           <p class="site-author-name" itemprop="name">单晓兰</p>
            
@@ -424,8 +456,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -454,6 +486,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造需要展示的数据信息"><span class="nav-number">2.</span> <span class="nav-text">构造需要展示的数据信息</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -479,7 +527,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
