@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/闪瞎眼健身app概要设计/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
 <meta property="og:description" content="需求分析整个app提供四个主要功能：登录以及权限管理、打卡积分、查看打卡记录、积分兑换。   登录以及权限管理功能需求列表 健身团成员以手机号为登录账号，通过密码登录，或者通过验证码登录方式，名称使用真实姓名，便于管理员confirm申请。 普通团员角色，登录后可正常查看打卡记录，发起当天打卡申请，查看本人积分，查看本人兑换记录的功能。 管理员除了普通成员的功能外，还有confirm成员打卡申请的">
-<meta property="og:updated_time" content="2017-06-23T07:45:13.000Z">
+<meta property="og:updated_time" content="2017-06-23T09:41:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="闪瞎眼健身app概要设计">
 <meta name="twitter:description" content="需求分析整个app提供四个主要功能：登录以及权限管理、打卡积分、查看打卡记录、积分兑换。   登录以及权限管理功能需求列表 健身团成员以手机号为登录账号，通过密码登录，或者通过验证码登录方式，名称使用真实姓名，便于管理员confirm申请。 普通团员角色，登录后可正常查看打卡记录，发起当天打卡申请，查看本人积分，查看本人兑换记录的功能。 管理员除了普通成员的功能外，还有confirm成员打卡申请的">
@@ -340,7 +340,115 @@
 <li>积分商城界面根据用户当前积分，显示可换取礼品（可选取礼品可点击，积分不足礼品置灰）</li>
 <li>用户选中某礼品后，点击“确认兑换”，用户积分相应减去该礼品所需积分，并返回打卡首页。</li>
 </ul>
-<h2 id="接口设计"><a href="#接口设计" class="headerlink" title="接口设计"></a>接口设计</h2><h3 id="login接口"><a href="#login接口" class="headerlink" title="login接口"></a>login接口</h3><h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2>
+<h2 id="接口设计"><a href="#接口设计" class="headerlink" title="接口设计"></a>接口设计</h2><h3 id="login接口"><a href="#login接口" class="headerlink" title="login接口"></a>login接口</h3><ul>
+<li>功能<br>1、登录app<br>2、获取用户权限</li>
+<li>调用时机：用户登录app时</li>
+<li>数据提交方式：POST<br>1、传参信息：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>参数类型</th>
+<th>是否必传</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phone</td>
+<td>用户手机号</td>
+<td>string</td>
+<td>是</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<p>2、正确返回值：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"errno"</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">"errmsg"</span>: <span class="string">"ok"</span>,</div><div class="line">  <span class="attr">"data"</span>: &#123;</div><div class="line">    <span class="attr">"UID"</span>: <span class="string">"1000000"</span>,</div><div class="line">    <span class="attr">"roles"</span>: <span class="number">1</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>返回参数说明  </p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UID</td>
+<td>用户id</td>
+<td>数据库中生成</td>
+</tr>
+<tr>
+<td>roles</td>
+<td>用户角色</td>
+<td>0：管理员  1：普通用户</td>
+</tr>
+</tbody>
+</table>
+<h3 id="search接口"><a href="#search接口" class="headerlink" title="search接口"></a>search接口</h3><ul>
+<li>功能<br>1、查询历史打卡数据<br>2、查询当天是否已提交打卡申请<br>3、查询现有积分数据   </li>
+<li>调用时机：用户登录成功后</li>
+<li>数据提交方式：POST<br>1、传参信息  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>参数类型</th>
+<th>是否必传</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UID</td>
+<td>用户id</td>
+<td>string</td>
+<td>是</td>
+<td>无</td>
+</tr>
+<tr>
+<td>data</td>
+<td>查询日期</td>
+<td>string</td>
+<td>是</td>
+<td>当前日期</td>
+</tr>
+</tbody>
+</table>
+<p>2、正确返回值<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"errno"</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">"errmsg"</span>: <span class="string">"ok"</span>,</div><div class="line">  <span class="attr">"data"</span>: &#123;</div><div class="line">    <span class="attr">"history_list"</span>:<span class="string">"7.01,7.02,7.04,7.05"</span>,</div><div class="line">    <span class="attr">"current_date"</span>:<span class="number">1</span>,</div><div class="line">    <span class="attr">"coupon_now"</span>: <span class="number">37</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>返回参数说明  </p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>history_list</td>
+<td>用户签到历史数据</td>
+<td>查询签到数据表获取</td>
+</tr>
+<tr>
+<td>current_date</td>
+<td>当前用户今天是否已提交签到申请</td>
+<td>0：未提交  1：已提交</td>
+</tr>
+<tr>
+<td>coupon_now</td>
+<td>当前用户所剩积分</td>
+<td>查询积分表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="push-打卡接口"><a href="#push-打卡接口" class="headerlink" title="push 打卡接口"></a>push 打卡接口</h3><h3 id="search-push-查询成员打卡申请接口"><a href="#search-push-查询成员打卡申请接口" class="headerlink" title="search_push 查询成员打卡申请接口"></a>search_push 查询成员打卡申请接口</h3><h3 id="confirm-push-管理员确认打卡接口"><a href="#confirm-push-管理员确认打卡接口" class="headerlink" title="confirm_push 管理员确认打卡接口"></a>confirm_push 管理员确认打卡接口</h3><h3 id="convert-兑换礼品接口"><a href="#convert-兑换礼品接口" class="headerlink" title="convert 兑换礼品接口"></a>convert 兑换礼品接口</h3><h3 id="search-convert-查询成员兑换申请接口"><a href="#search-convert-查询成员兑换申请接口" class="headerlink" title="search_convert 查询成员兑换申请接口"></a>search_convert 查询成员兑换申请接口</h3><h3 id="confirm-convert-确认礼品已下发接口"><a href="#confirm-convert-确认礼品已下发接口" class="headerlink" title="confirm_convert 确认礼品已下发接口"></a>confirm_convert 确认礼品已下发接口</h3><h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2>
       
     </div>
 
@@ -495,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录以及权限管理功能需求列表"><span class="nav-number">1.1.</span> <span class="nav-text">登录以及权限管理功能需求列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打卡积分功能"><span class="nav-number">1.2.</span> <span class="nav-text">打卡积分功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理员确认功能"><span class="nav-number">1.3.</span> <span class="nav-text">管理员确认功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#积分兑换功能"><span class="nav-number">1.4.</span> <span class="nav-text">积分兑换功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口设计"><span class="nav-number">2.</span> <span class="nav-text">接口设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#login接口"><span class="nav-number">2.1.</span> <span class="nav-text">login接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">3.</span> <span class="nav-text">数据库设计</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录以及权限管理功能需求列表"><span class="nav-number">1.1.</span> <span class="nav-text">登录以及权限管理功能需求列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打卡积分功能"><span class="nav-number">1.2.</span> <span class="nav-text">打卡积分功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理员确认功能"><span class="nav-number">1.3.</span> <span class="nav-text">管理员确认功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#积分兑换功能"><span class="nav-number">1.4.</span> <span class="nav-text">积分兑换功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口设计"><span class="nav-number">2.</span> <span class="nav-text">接口设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#login接口"><span class="nav-number">2.1.</span> <span class="nav-text">login接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search接口"><span class="nav-number">2.2.</span> <span class="nav-text">search接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#push-打卡接口"><span class="nav-number">2.3.</span> <span class="nav-text">push 打卡接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-push-查询成员打卡申请接口"><span class="nav-number">2.4.</span> <span class="nav-text">search_push 查询成员打卡申请接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confirm-push-管理员确认打卡接口"><span class="nav-number">2.5.</span> <span class="nav-text">confirm_push 管理员确认打卡接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#convert-兑换礼品接口"><span class="nav-number">2.6.</span> <span class="nav-text">convert 兑换礼品接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#search-convert-查询成员兑换申请接口"><span class="nav-number">2.7.</span> <span class="nav-text">search_convert 查询成员兑换申请接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confirm-convert-确认礼品已下发接口"><span class="nav-number">2.8.</span> <span class="nav-text">confirm_convert 确认礼品已下发接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">3.</span> <span class="nav-text">数据库设计</span></a></li></ol></div>
             
 
           </div>
