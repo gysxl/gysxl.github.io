@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/闪瞎眼健身app概要设计/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
 <meta property="og:description" content="需求分析整个app提供四个主要功能：登录以及权限管理、打卡积分、查看打卡记录、积分兑换。   登录以及权限管理功能需求列表 健身团成员以手机号为登录账号，通过密码登录，或者通过验证码登录方式，名称使用真实姓名，便于管理员confirm申请。 普通团员角色，登录后可正常查看打卡记录，发起当天打卡申请，查看本人积分，查看本人兑换记录的功能。 管理员除了普通成员的功能外，还有confirm成员打卡申请的">
-<meta property="og:updated_time" content="2017-06-23T10:31:39.000Z">
+<meta property="og:updated_time" content="2017-06-23T10:48:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="闪瞎眼健身app概要设计">
 <meta name="twitter:description" content="需求分析整个app提供四个主要功能：登录以及权限管理、打卡积分、查看打卡记录、积分兑换。   登录以及权限管理功能需求列表 健身团成员以手机号为登录账号，通过密码登录，或者通过验证码登录方式，名称使用真实姓名，便于管理员confirm申请。 普通团员角色，登录后可正常查看打卡记录，发起当天打卡申请，查看本人积分，查看本人兑换记录的功能。 管理员除了普通成员的功能外，还有confirm成员打卡申请的">
@@ -636,7 +636,8 @@
 </tbody>
 </table>
 <p>2、正确返回值<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"errno"</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">"errmsg"</span>: <span class="string">"ok"</span>,</div><div class="line">  <span class="attr">"data"</span>: &#123;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2>
+<h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><p>整个模块共计需要5张数据表，以及一个redis缓冲池，详细设计如下：<br>1、用户信息表<br>2、用户打卡记录表<br>3、礼品信息表<br>4、兑换记录表<br>5、用户积分表  </p>
+
       
     </div>
 
