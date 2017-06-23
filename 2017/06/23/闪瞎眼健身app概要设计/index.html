@@ -96,7 +96,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/23/闪瞎眼健身app概要设计/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
 <meta property="og:description" content="需求分析整个app提供四个主要功能：登录以及权限管理、打卡积分、查看打卡记录、积分兑换。   登录以及权限管理功能需求列表 健身团成员以手机号为登录账号，通过密码登录，或者通过验证码登录方式，名称使用真实姓名，便于管理员confirm申请。 普通团员角色，登录后可正常查看打卡记录，发起当天打卡申请，查看本人积分，查看本人兑换记录的功能。 管理员除了普通成员的功能外，还有confirm成员打卡申请的">
-<meta property="og:updated_time" content="2017-06-23T06:58:22.000Z">
+<meta property="og:updated_time" content="2017-06-23T07:43:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="闪瞎眼健身app概要设计">
 <meta name="twitter:description" content="需求分析整个app提供四个主要功能：登录以及权限管理、打卡积分、查看打卡记录、积分兑换。   登录以及权限管理功能需求列表 健身团成员以手机号为登录账号，通过密码登录，或者通过验证码登录方式，名称使用真实姓名，便于管理员confirm申请。 普通团员角色，登录后可正常查看打卡记录，发起当天打卡申请，查看本人积分，查看本人兑换记录的功能。 管理员除了普通成员的功能外，还有confirm成员打卡申请的">
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -280,7 +280,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T14:03:34+08:00">
                 Jun 23 2017
@@ -334,7 +334,7 @@
 <li>积分商城界面根据用户当前积分，显示可换取礼品（可选取礼品可点击，积分不足礼品置灰）</li>
 <li>用户选中某礼品后，点击“确认兑换”，用户积分相应减去该礼品所需积分，并返回打卡首页。</li>
 </ul>
-
+<h2 id="接口设计"><a href="#接口设计" class="headerlink" title="接口设计"></a>接口设计</h2><h3 id="login接口"><a href="#login接口" class="headerlink" title="login接口"></a>login接口</h3><h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2>
       
     </div>
 
@@ -427,10 +427,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -451,7 +451,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">8</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -489,7 +489,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录以及权限管理功能需求列表"><span class="nav-number">1.1.</span> <span class="nav-text">登录以及权限管理功能需求列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打卡积分功能"><span class="nav-number">1.2.</span> <span class="nav-text">打卡积分功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理员确认功能"><span class="nav-number">1.3.</span> <span class="nav-text">管理员确认功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#积分兑换功能"><span class="nav-number">1.4.</span> <span class="nav-text">积分兑换功能</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录以及权限管理功能需求列表"><span class="nav-number">1.1.</span> <span class="nav-text">登录以及权限管理功能需求列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打卡积分功能"><span class="nav-number">1.2.</span> <span class="nav-text">打卡积分功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理员确认功能"><span class="nav-number">1.3.</span> <span class="nav-text">管理员确认功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#积分兑换功能"><span class="nav-number">1.4.</span> <span class="nav-text">积分兑换功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口设计"><span class="nav-number">2.</span> <span class="nav-text">接口设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#login接口"><span class="nav-number">2.1.</span> <span class="nav-text">login接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库设计"><span class="nav-number">3.</span> <span class="nav-text">数据库设计</span></a></li></ol></div>
             
 
           </div>
@@ -521,7 +521,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
