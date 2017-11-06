@@ -331,7 +331,7 @@
 <li>编写测试代码</li>
 <li>run monkey并分析BUG日志  </li>
 </ul>
-<h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportPro.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：</p>
+<h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportCode.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：</p>
 <pre><code>target &quot;App&quot; do   //App为自己的工程名
     pod &quot;SwiftMonkeyPaws&quot;, &quot;~&gt; 1.0&quot;
 end
