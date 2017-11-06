@@ -201,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -211,7 +211,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -283,7 +283,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T19:35:33+08:00">
                 Nov 3 2017
@@ -330,21 +330,16 @@
 <li>新建并配置UI testing target</li>
 <li>编写测试代码</li>
 <li>run monkey并分析BUG日志  </li>
+<li>锦上添花添加手势记录</li>
 </ul>
-<h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportCode.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：</p>
-<pre><code>target &quot;App&quot; do   //App为自己的工程名
-    pod &quot;SwiftMonkeyPaws&quot;, &quot;~&gt; 1.0&quot;
-end
-
-target &quot;Tests&quot; do //Test为text对应的Target名
-    pod &quot;SwiftMonkey&quot;, &quot;~&gt; 1.0&quot;
-end
-</code></pre><p>然后通过<code>pod install</code>的方式集成   </p>
-<h2 id="新建并配置UI-testing-target"><a href="#新建并配置UI-testing-target" class="headerlink" title="新建并配置UI testing target"></a>新建并配置UI testing target</h2><p>现在项目中添加一个新的target，依次选择file——&gt;new——&gt;target,最后选择iOS UI testing Bundle：<br><img src="/images/NewTarget.png" alt=""><br>点击next后就配置一些target的信息，这里需要注意的是，由于这个工具是用swift写的，所以需要选择的语言是Swift，其他的参考下面的配置然后根据个人的项目修改就可：<br><img src="/images/OptionsForMonkey.png" alt=""><br>配置相关的target信息：<br><img src="/images/setting1.png" alt=""><br><img src="/images/setting2.png" alt=""><br>需要注意的是，由于工具是用Swift编写的，所以需要在项目中的build setting中勾选上Swift的标准库，否则不能集成工具库，而且新建的target需要注册成功，勾选你的证书什么的注册一下就好。如下图所示：<br><img src="/images/setting3.png" alt=""><br><img src="/images/setting4.png" alt=""><br>以上就配置完成了！  </p>
+<h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportCode.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="title">target</span> <span class="string">"App"</span> <span class="keyword">do</span>   //<span class="type">App</span>为自己的工程名</div><div class="line">    pod <span class="string">"SwiftMonkeyPaws"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="title">end</span></div><div class="line"></div><div class="line"><span class="title">target</span> <span class="string">"Tests"</span> <span class="keyword">do</span> //<span class="type">Test</span>为text对应的<span class="type">Target</span>名</div><div class="line">    pod <span class="string">"SwiftMonkey"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="title">end</span></div><div class="line">```    </div><div class="line"></div><div class="line">然后通过```pod install```的方式集成   </div><div class="line"><span class="meta">## 新建并配置UI testing target  </span></div><div class="line">现在项目中添加一个新的target，依次选择file——&gt;new——&gt;target,最后选择iOS <span class="type">UI</span> testing <span class="type">Bundle</span>：  </div><div class="line">![](/images/<span class="type">NewTarget</span>.png)   </div><div class="line">点击next后就配置一些target的信息，这里需要注意的是，由于这个工具是用swift写的，所以需要选择的语言是<span class="type">Swift</span>，其他的参考下面的配置然后根据个人的项目修改就可：  </div><div class="line">![](/images/<span class="type">OptionsForMonkey</span>.png)  </div><div class="line">配置相关的target信息：   </div><div class="line">![](/images/setting1.png)   </div><div class="line">![](/images/setting2.png)  </div><div class="line">需要注意的是，由于工具是用<span class="type">Swift</span>编写的，所以需要在项目中的build setting中勾选上<span class="type">Swift</span>的标准库，否则不能集成工具库，而且新建的target需要注册成功，勾选你的证书什么的注册一下就好。如下图所示：  </div><div class="line">![](/images/setting3.png)  </div><div class="line">![](/images/setting4.png)  </div><div class="line">以上就配置完成了！  </div><div class="line"><span class="meta">## 编写测试代码  </span></div><div class="line">打开你自己创建的<span class="type">Swift</span>代码，我的项目中，文件名为：<span class="type">MonkeyForWeatherRequestUITests</span>.swift，将里面的的内容替换为如下：   </div><div class="line">```objc  </div><div class="line"><span class="keyword">import</span> XCTest</div><div class="line"></div><div class="line"><span class="keyword">import</span> SwiftMonkey</div><div class="line"><span class="class"></span></div><div class="line"><span class="keyword">class</span> <span class="type">MonkeyForOCUIMonkeyTests</span>: <span class="type">XCTestCase</span> &#123;</div><div class="line"></div><div class="line">    override func setUp() &#123;</div><div class="line"></div><div class="line">        super.setUp()</div><div class="line"></div><div class="line">        <span class="type">XCUIApplication</span>().launch()</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    override func tearDown() &#123;</div><div class="line"></div><div class="line">        super.tearDown()</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func testMonkey() &#123;</div><div class="line"></div><div class="line">        let application = <span class="type">XCUIApplication</span>()</div><div class="line"></div><div class="line">        _ = application.descendants(<span class="title">matching</span>: .<span class="title">any</span>).element(<span class="title">boundBy</span>: 0).frame</div><div class="line"></div><div class="line">        let monkey = <span class="type">Monkey</span>(<span class="title">frame</span>: <span class="title">application</span>.<span class="title">frame</span>)</div><div class="line"></div><div class="line">        monkey.addDefaultXCTestPrivateActions()</div><div class="line"></div><div class="line">        monkey.addXCTestTapAlertAction(<span class="title">interval</span>: 100, <span class="title">application</span>: <span class="title">application</span>)</div><div class="line"></div><div class="line">        monkey.monkeyAround()</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">```   </div><div class="line">上面基本上是<span class="type">SwiftMonkey</span>的默认代码，addDefaultXCTestPrivateActions是调用<span class="type">Apple</span>私有手势方法，addDefaultUIAutomationActions只在模拟器中有效，内部实现如下：  </div><div class="line">```swift</div><div class="line">public func addDefaultXCTestPrivateActions() &#123;</div><div class="line">        addXCTestTapAction(<span class="title">weight</span>: 25)</div><div class="line">        addXCTestLongPressAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestDragAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestPinchCloseAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestPinchOpenAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestRotateAction(<span class="title">weight</span>: 1)</div><div class="line">        //addXCTestOrientationAction(<span class="title">weight</span>: 1) // <span class="type">TODO</span>: <span class="type">Investigate</span> why this does not work.</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>默认执行点击，长按，拖拽，捏合，旋转，横竖屏切换操作，Weight代表的是时间间隔，如果觉得系统默认的操作过多，可以自行删减.</p>
+<h2 id="run-monkey并分析BUG日志"><a href="#run-monkey并分析BUG日志" class="headerlink" title="run monkey并分析BUG日志"></a>run monkey并分析BUG日志</h2><p>编写完测试代码后，整个monkey的集成工作就完成了，接下来就可以跑你的App了，点击下图所示的这个小按钮，程序就开始了乱点的Monkey过程。<br><img src="/images/runMonkey.png" alt=""><br>跑起来的感觉可以盗用官方的视频展示一下：<br><img src="/images/testDemo.gif" alt=""><br>具体的结果分析，后续会写几个标准的crash类型去测试并分析。敬请期待，后续继续完善此文~~~   </p>
+<h2 id="锦上添花添加手势记录"><a href="#锦上添花添加手势记录" class="headerlink" title="锦上添花添加手势记录"></a>锦上添花添加手势记录</h2>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/03/基于XCUITest进行的iOSMonkey测试/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -418,7 +413,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T14:03:34+08:00">
                 Jun 23 2017
@@ -482,7 +477,7 @@ end
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/23/闪瞎眼健身app概要设计/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -556,7 +551,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T16:38:28+08:00">
                 Jun 13 2017
@@ -667,7 +662,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:52:05+08:00">
                 May 25 2017
@@ -736,7 +731,7 @@ end
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/UITableView-基本使用方法总结/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -810,7 +805,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:51:48+08:00">
                 May 25 2017
@@ -873,7 +868,7 @@ end
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/iOS-objective-c实现定位当前城市/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -947,7 +942,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T15:50:53+08:00">
                 May 25 2017
@@ -1015,7 +1010,7 @@ end
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/android客户端手动测试代码覆盖率统计/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1089,7 +1084,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T19:00:40+08:00">
                 May 24 2017
@@ -1139,7 +1134,7 @@ end
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1213,7 +1208,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T18:57:25+08:00">
                 May 24 2017
@@ -1267,7 +1262,7 @@ end
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1341,7 +1336,7 @@ end
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T18:09:55+08:00">
                 May 24 2017
@@ -1388,7 +1383,7 @@ end
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/24/hello-world/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1470,7 +1465,7 @@ end
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1524,7 +1519,7 @@ end
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

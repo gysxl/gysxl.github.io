@@ -98,15 +98,12 @@
 <meta property="og:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
 <meta property="og:image" content="http://yoursite.com/images/ImportCode.png">
 <meta property="og:image" content="http://yoursite.com/images/ImportPro.png">
-<meta property="og:image" content="http://yoursite.com/images/NewTarget.png">
-<meta property="og:image" content="http://yoursite.com/images/OptionsForMonkey.png">
-<meta property="og:image" content="http://yoursite.com/images/setting1.png">
-<meta property="og:image" content="http://yoursite.com/images/setting2.png">
-<meta property="og:image" content="http://yoursite.com/images/setting3.png">
-<meta property="og:image" content="http://yoursite.com/images/setting4.png">
 <meta property="og:image" content="http://yoursite.com/images/runMonkey.png">
 <meta property="og:image" content="http://yoursite.com/images/testDemo.gif">
-<meta property="og:updated_time" content="2017-11-06T10:22:55.058Z">
+<meta property="og:image" content="http://yoursite.com/images/bridge1.png">
+<meta property="og:image" content="http://yoursite.com/images/bridge2.png">
+<meta property="og:image" content="http://yoursite.com/images/bridge3.png">
+<meta property="og:updated_time" content="2017-11-06T13:44:50.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于XCUITest进行的iOSMonkey测试">
 <meta name="twitter:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
@@ -211,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -221,7 +218,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -291,7 +288,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T19:35:33+08:00">
                 Nov 3 2017
@@ -337,57 +334,21 @@
 <li>新建并配置UI testing target</li>
 <li>编写测试代码</li>
 <li>run monkey并分析BUG日志  </li>
+<li>锦上添花添加手势记录</li>
 </ul>
-<h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportCode.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：</p>
-<pre><code>target &quot;App&quot; do   //App为自己的工程名
-    pod &quot;SwiftMonkeyPaws&quot;, &quot;~&gt; 1.0&quot;
-end
-
-target &quot;Tests&quot; do //Test为text对应的Target名
-    pod &quot;SwiftMonkey&quot;, &quot;~&gt; 1.0&quot;
-end
-</code></pre><p>然后通过<code>pod install</code>的方式集成   </p>
-<h2 id="新建并配置UI-testing-target"><a href="#新建并配置UI-testing-target" class="headerlink" title="新建并配置UI testing target"></a>新建并配置UI testing target</h2><p>现在项目中添加一个新的target，依次选择file——&gt;new——&gt;target,最后选择iOS UI testing Bundle：<br><img src="/images/NewTarget.png" alt=""><br>点击next后就配置一些target的信息，这里需要注意的是，由于这个工具是用swift写的，所以需要选择的语言是Swift，其他的参考下面的配置然后根据个人的项目修改就可：<br><img src="/images/OptionsForMonkey.png" alt=""><br>配置相关的target信息：<br><img src="/images/setting1.png" alt=""><br><img src="/images/setting2.png" alt=""><br>需要注意的是，由于工具是用Swift编写的，所以需要在项目中的build setting中勾选上Swift的标准库，否则不能集成工具库，而且新建的target需要注册成功，勾选你的证书什么的注册一下就好。如下图所示：<br><img src="/images/setting3.png" alt=""><br><img src="/images/setting4.png" alt=""><br>以上就配置完成了！  </p>
-<h2 id="编写测试代码"><a href="#编写测试代码" class="headerlink" title="编写测试代码"></a>编写测试代码</h2><p>打开你自己创建的Swift代码，我的项目中，文件名为：MonkeyForWeatherRequestUITests.swift，将里面的的内容替换为如下：   </p>
-<pre><code class="objc">import <span class="built_in">XCTest</span>
-
-import SwiftMonkey
-
-<span class="keyword">class</span> MonkeyForOCUIMonkeyTests: <span class="built_in">XCTestCase</span> {
-
-    override func setUp() {
-
-        <span class="keyword">super</span>.setUp()
-
-        <span class="built_in">XCUIApplication</span>().launch()
-
-    }
-
-    override func tearDown() {
-
-        <span class="keyword">super</span>.tearDown()
-
-    }
-
-    func testMonkey() {
-
-        let application = <span class="built_in">XCUIApplication</span>()
-
-        _ = application.descendants(matching: .any).element(boundBy: <span class="number">0</span>).frame
-
-        let monkey = Monkey(frame: application.frame)
-
-        monkey.addDefaultXCTestPrivateActions()
-
-        monkey.addXCTestTapAlertAction(interval: <span class="number">100</span>, application: application)
-
-        monkey.monkeyAround()
-
-    }
-
-}
-</code></pre>
-<h2 id="run-monkey并分析BUG日志"><a href="#run-monkey并分析BUG日志" class="headerlink" title="run monkey并分析BUG日志"></a>run monkey并分析BUG日志</h2><p>编写完测试代码后，整个monkey的集成工作就完成了，接下来就可以跑你的App了，点击下图所示的这个小按钮，程序就开始了乱点的Monkey过程。<br><img src="/images/runMonkey.png" alt=""><br>跑起来的感觉可以盗用官方的视频展示一下：<br><img src="/images/testDemo.gif" alt=""><br>具体的结果分析，后续会写几个标准的crash类型去测试并分析。敬请期待，后续继续完善此文~~~</p>
+<h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportCode.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：<br><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="title">target</span> <span class="string">"App"</span> <span class="keyword">do</span>   //<span class="type">App</span>为自己的工程名</div><div class="line">    pod <span class="string">"SwiftMonkeyPaws"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="title">end</span></div><div class="line"></div><div class="line"><span class="title">target</span> <span class="string">"Tests"</span> <span class="keyword">do</span> //<span class="type">Test</span>为text对应的<span class="type">Target</span>名</div><div class="line">    pod <span class="string">"SwiftMonkey"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="title">end</span></div><div class="line">```    </div><div class="line"></div><div class="line">然后通过```pod install```的方式集成   </div><div class="line"><span class="meta">## 新建并配置UI testing target  </span></div><div class="line">现在项目中添加一个新的target，依次选择file——&gt;new——&gt;target,最后选择iOS <span class="type">UI</span> testing <span class="type">Bundle</span>：  </div><div class="line">![](/images/<span class="type">NewTarget</span>.png)   </div><div class="line">点击next后就配置一些target的信息，这里需要注意的是，由于这个工具是用swift写的，所以需要选择的语言是<span class="type">Swift</span>，其他的参考下面的配置然后根据个人的项目修改就可：  </div><div class="line">![](/images/<span class="type">OptionsForMonkey</span>.png)  </div><div class="line">配置相关的target信息：   </div><div class="line">![](/images/setting1.png)   </div><div class="line">![](/images/setting2.png)  </div><div class="line">需要注意的是，由于工具是用<span class="type">Swift</span>编写的，所以需要在项目中的build setting中勾选上<span class="type">Swift</span>的标准库，否则不能集成工具库，而且新建的target需要注册成功，勾选你的证书什么的注册一下就好。如下图所示：  </div><div class="line">![](/images/setting3.png)  </div><div class="line">![](/images/setting4.png)  </div><div class="line">以上就配置完成了！  </div><div class="line"><span class="meta">## 编写测试代码  </span></div><div class="line">打开你自己创建的<span class="type">Swift</span>代码，我的项目中，文件名为：<span class="type">MonkeyForWeatherRequestUITests</span>.swift，将里面的的内容替换为如下：   </div><div class="line">```objc  </div><div class="line"><span class="keyword">import</span> XCTest</div><div class="line"></div><div class="line"><span class="keyword">import</span> SwiftMonkey</div><div class="line"><span class="class"></span></div><div class="line"><span class="keyword">class</span> <span class="type">MonkeyForOCUIMonkeyTests</span>: <span class="type">XCTestCase</span> &#123;</div><div class="line"></div><div class="line">    override func setUp() &#123;</div><div class="line"></div><div class="line">        super.setUp()</div><div class="line"></div><div class="line">        <span class="type">XCUIApplication</span>().launch()</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    override func tearDown() &#123;</div><div class="line"></div><div class="line">        super.tearDown()</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func testMonkey() &#123;</div><div class="line"></div><div class="line">        let application = <span class="type">XCUIApplication</span>()</div><div class="line"></div><div class="line">        _ = application.descendants(<span class="title">matching</span>: .<span class="title">any</span>).element(<span class="title">boundBy</span>: 0).frame</div><div class="line"></div><div class="line">        let monkey = <span class="type">Monkey</span>(<span class="title">frame</span>: <span class="title">application</span>.<span class="title">frame</span>)</div><div class="line"></div><div class="line">        monkey.addDefaultXCTestPrivateActions()</div><div class="line"></div><div class="line">        monkey.addXCTestTapAlertAction(<span class="title">interval</span>: 100, <span class="title">application</span>: <span class="title">application</span>)</div><div class="line"></div><div class="line">        monkey.monkeyAround()</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">```   </div><div class="line">上面基本上是<span class="type">SwiftMonkey</span>的默认代码，addDefaultXCTestPrivateActions是调用<span class="type">Apple</span>私有手势方法，addDefaultUIAutomationActions只在模拟器中有效，内部实现如下：  </div><div class="line">```swift</div><div class="line">public func addDefaultXCTestPrivateActions() &#123;</div><div class="line">        addXCTestTapAction(<span class="title">weight</span>: 25)</div><div class="line">        addXCTestLongPressAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestDragAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestPinchCloseAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestPinchOpenAction(<span class="title">weight</span>: 1)</div><div class="line">        addXCTestRotateAction(<span class="title">weight</span>: 1)</div><div class="line">        //addXCTestOrientationAction(<span class="title">weight</span>: 1) // <span class="type">TODO</span>: <span class="type">Investigate</span> why this does not work.</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>默认执行点击，长按，拖拽，捏合，旋转，横竖屏切换操作，Weight代表的是时间间隔，如果觉得系统默认的操作过多，可以自行删减.</p>
+<h2 id="run-monkey并分析BUG日志"><a href="#run-monkey并分析BUG日志" class="headerlink" title="run monkey并分析BUG日志"></a>run monkey并分析BUG日志</h2><p>编写完测试代码后，整个monkey的集成工作就完成了，接下来就可以跑你的App了，点击下图所示的这个小按钮，程序就开始了乱点的Monkey过程。<br><img src="/images/runMonkey.png" alt=""><br>跑起来的感觉可以盗用官方的视频展示一下：<br><img src="/images/testDemo.gif" alt=""><br>具体的结果分析，后续会写几个标准的crash类型去测试并分析。敬请期待，后续继续完善此文~~~   </p>
+<h2 id="锦上添花添加手势记录"><a href="#锦上添花添加手势记录" class="headerlink" title="锦上添花添加手势记录"></a>锦上添花添加手势记录</h2><p>最上面说到过把git下来的SwiftMonkeyPaws拖到我们的项目中，但是在上述的使用中并没有提到关于这个项目的说明，其实名字就很容易看出来paws是手掌的意思，显而易见，就是用手掌点击的方式把monkey随机的操作在界面上显示出来，最后的效果就想上面引用的官方的那个动图中的小手掌的样式。想要在oc项目中加上这个小手势会遇到一个oc代码引入swift方法的问题，这就需要用到“桥接”这一概念–本文会介绍一个简单的创建桥接文件的方式。   </p>
+<ul>
+<li>OC与Swift混编之桥接文件<br>Xcode有个比较让人暖心的做法，就是在每个项目中第一次创建不同语言的文件时，会自动提示是否新建桥接文件。所以我们首先在现有的项目中新建一个Swift文件，名字随意，主要用于自动创建桥接文件。<br><img src="/images/bridge1.png" alt=""><br>创建成功，点击next后，会自动弹出添加桥接文件的提示：<br><img src="/images/bridge2.png" alt=""><br>选择Create Bridging Header，此时你会发现项目会出现一个 项目名-Bridging-Header.h的文件，这个就是桥接文件了，然后在自己的桥接文件中引入需要的类库:<br><img src="/images/bridge3.png" alt=""><br>以上，oc与Swift的桥接文件就完成了！！！<br>在需要使用到Swift类的oc文件中，引入如下的头文件：<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"WeatherRequest-Swift.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"WeatherRequest-Bridging-Header.h"</span></span></div><div class="line">```  </div><div class="line">然后就用畅通无阻的使用了。</div><div class="line">+ 在oc代码中引入手掌  </div><div class="line">在自己的项目的Appdelegate中代码实现如下内容：</div><div class="line"></div><div class="line">```objc</div><div class="line"><span class="meta">#import <span class="meta-string">"WeatherRequest-Swift.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"WeatherRequest-Bridging-Header.h"</span></span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> ()</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) MonkeyPaws *paws;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span></span></div><div class="line"></div><div class="line"></div><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</div><div class="line">    <span class="comment">// Override point for customization after application launch.</span></div><div class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:[<span class="built_in">UIScreen</span> mainScreen].bounds];</div><div class="line">    <span class="keyword">self</span>.window.backgroundColor = [<span class="built_in">UIColor</span> whiteColor];</div><div class="line">    [<span class="keyword">self</span>.window makeKeyAndVisible];</div><div class="line">    ViewController *homeViewController = [[ViewController alloc] init];</div><div class="line">    <span class="built_in">UINavigationController</span> *navigationController = [[<span class="built_in">UINavigationController</span> alloc] initWithRootViewController:homeViewController];</div><div class="line">    <span class="keyword">self</span>.window.rootViewController = navigationController;</div><div class="line">    <span class="keyword">self</span>.paws = [[MonkeyPaws alloc] initWithView:<span class="keyword">self</span>.window tapUIApplication:<span class="literal">true</span>]; <span class="comment">//add for SwiftMonkeyPaws</span></div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>添加完成后，再次按照第四步的方式run起来monkey就是上图那种带小手手的monkeyTest了。   </p>
+<ul>
+<li>控制monkey循环<br>monkeyAround代表次数，默认如果不设置次数，会一直执行下去.  <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public func monkeyAround() &#123;</div><div class="line">        <span class="keyword">while</span> <span class="literal">true</span> &#123;</div><div class="line">            actRandomly()</div><div class="line">            actRegularly()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">```  </div><div class="line">在```func testMonkey```中设置如下控制monkey次数  </div><div class="line"></div><div class="line">```objc  </div><div class="line"><span class="comment">// 如果指定次数，请调用这个函数</span></div><div class="line"></div><div class="line">monkey.monkeyAround(iterations: <span class="number">1024</span>)</div><div class="line"></div><div class="line"><span class="comment">// 如果不指定次数，将一直运行测试</span></div><div class="line"></div><div class="line">monkey.monkeyAround()</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -481,10 +442,10 @@ import SwiftMonkey
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -505,7 +466,7 @@ import SwiftMonkey
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -543,7 +504,7 @@ import SwiftMonkey
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总体介绍"><span class="nav-number">1.</span> <span class="nav-text">总体介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加monkey工具源码"><span class="nav-number">2.</span> <span class="nav-text">添加monkey工具源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建并配置UI-testing-target"><span class="nav-number">3.</span> <span class="nav-text">新建并配置UI testing target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写测试代码"><span class="nav-number">4.</span> <span class="nav-text">编写测试代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#run-monkey并分析BUG日志"><span class="nav-number">5.</span> <span class="nav-text">run monkey并分析BUG日志</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总体介绍"><span class="nav-number">1.</span> <span class="nav-text">总体介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加monkey工具源码"><span class="nav-number">2.</span> <span class="nav-text">添加monkey工具源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#run-monkey并分析BUG日志"><span class="nav-number">3.</span> <span class="nav-text">run monkey并分析BUG日志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锦上添花添加手势记录"><span class="nav-number">4.</span> <span class="nav-text">锦上添花添加手势记录</span></a></li></ol></div>
             
 
           </div>
@@ -575,7 +536,7 @@ import SwiftMonkey
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
