@@ -92,7 +92,7 @@
 
 <meta name="description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
 <meta property="og:type" content="article">
-<meta property="og:title" content="于XCUITest进行的iOSMonkey测试">
+<meta property="og:title" content="基于XCUITest进行的iOSMonkey测试">
 <meta property="og:url" content="http://yoursite.com/2017/11/03/基于XCUITest进行的iOSMonkey测试/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
 <meta property="og:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
@@ -106,9 +106,9 @@
 <meta property="og:image" content="http://yoursite.com/images/setting4.png">
 <meta property="og:image" content="http://yoursite.com/images/runMonkey.png">
 <meta property="og:image" content="http://yoursite.com/images/testDemo.gif">
-<meta property="og:updated_time" content="2017-11-06T09:25:17.198Z">
+<meta property="og:updated_time" content="2017-11-06T10:11:01.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="于XCUITest进行的iOSMonkey测试">
+<meta name="twitter:title" content="基于XCUITest进行的iOSMonkey测试">
 <meta name="twitter:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
 <meta name="twitter:image" content="http://yoursite.com/images/ImportCode.png">
 
@@ -144,7 +144,7 @@
 
 
 
-  <title>于XCUITest进行的iOSMonkey测试 | 兰小妞滴Blog</title>
+  <title>基于XCUITest进行的iOSMonkey测试 | 兰小妞滴Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en_us">
@@ -211,7 +211,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -221,7 +221,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">于XCUITest进行的iOSMonkey测试</h1>
+          <h1 class="post-title" itemprop="name headline">基于XCUITest进行的iOSMonkey测试</h1>
         
 
         <div class="post-meta">
@@ -291,7 +291,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T19:35:33+08:00">
                 Nov 3 2017
@@ -481,10 +481,10 @@ import SwiftMonkey
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -505,7 +505,7 @@ import SwiftMonkey
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -575,7 +575,7 @@ import SwiftMonkey
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
