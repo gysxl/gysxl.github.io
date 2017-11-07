@@ -324,7 +324,7 @@
           <blockquote>
 <p>本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a></p>
 </blockquote>
-<h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测试，基本在功能验证bug收敛阶段引入，主要用于测试APP的稳定性，一般常见的crash闪退以及卡死问题都会影响APP的稳定性。<br>本文会在之前自学iOS时写的半废弃状态的练手APP天气预报作为demo做monkeyTest，首次使用可以直接拉代码实验，代码地址：git@github.com:gysxl/WeatherRequest.git<br>总体来说，在你的项目中添加monkey测试，主要分为以下几步：  </p>
+<h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测试，基本在功能验证bug收敛阶段引入，主要用于测试APP的稳定性，一般常见的crash闪退以及卡死问题都会影响APP的稳定性。<br>本文会在之前自学iOS时写的半废弃状态的练手APP天气预报作为demo做monkeyTest，首次使用可以直接拉代码实验，代码地址：<em>git@github.com:gysxl/WeatherRequest.git</em><br>总体来说，在你的项目中添加monkey测试，主要分为以下几步：  </p>
 <ul>
 <li>添加monkey工具源码</li>
 <li>新建并配置UI testing target</li>
@@ -334,7 +334,7 @@
 </ul>
 <h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportCode.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：  </p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">target <span class="string">"App"</span> <span class="built_in">do</span>   <span class="comment">//App为自己的工程名</span></div><div class="line">    pod <span class="string">"SwiftMonkeyPaws"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="built_in">end</span></div><div class="line"></div><div class="line">target <span class="string">"Tests"</span> <span class="built_in">do</span> <span class="comment">//Test为text对应的Target名</span></div><div class="line">    pod <span class="string">"SwiftMonkey"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="built_in">end</span></div></pre></td></tr></table></figure>
-<p>然后通过”pod install”的方式集成       </p>
+<p>然后通过 <em>pod install</em> 的方式集成       </p>
 <h2 id="新建并配置UI-testing-target"><a href="#新建并配置UI-testing-target" class="headerlink" title="新建并配置UI testing target"></a>新建并配置UI testing target</h2><p>现在项目中添加一个新的target，依次选择file——&gt;new——&gt;target,最后选择iOS UI testing Bundle：<br><img src="/images/NewTarget.png" alt=""><br>点击next后就配置一些target的信息，这里需要注意的是，由于这个工具是用swift写的，所以需要选择的语言是Swift，其他的参考下面的配置然后根据个人的项目修改就可：<br><img src="/images/OptionsForMonkey.png" alt=""><br>配置相关的target信息：<br><img src="/images/setting1.png" alt=""><br><img src="/images/setting2.png" alt=""><br>需要注意的是，由于工具是用Swift编写的，所以需要在项目中的build setting中勾选上Swift的标准库，否则不能集成工具库，而且新建的target需要注册成功，勾选你的证书什么的注册一下就好。如下图所示：<br><img src="/images/setting3.png" alt=""><br><img src="/images/setting4.png" alt=""><br>以上就配置完成了！  </p>
           <!--noindex-->
           <div class="post-button text-center">
