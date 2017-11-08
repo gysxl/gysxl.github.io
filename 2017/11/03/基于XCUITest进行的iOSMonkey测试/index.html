@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://yoursite.com/images/bridge1.png">
 <meta property="og:image" content="http://yoursite.com/images/bridge2.png">
 <meta property="og:image" content="http://yoursite.com/images/bridge3.png">
-<meta property="og:updated_time" content="2017-11-07T04:20:14.930Z">
+<meta property="og:updated_time" content="2017-11-08T13:44:56.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于XCUITest进行的iOSMonkey测试">
 <meta name="twitter:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
@@ -362,11 +362,11 @@
 </ul>
 <p>添加完成后，再次按照第四步的方式run起来monkey就是上图那种带小手手的monkeyTest了。   </p>
 <ul>
-<li>控制monkey循环<br>monkeyAround代表次数，默认如果不设置次数，会一直执行下去.  <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public func monkeyAround() &#123;</div><div class="line">        <span class="keyword">while</span> <span class="literal">true</span> &#123;</div><div class="line">            actRandomly()</div><div class="line">            actRegularly()</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<li>控制monkey循环<br>monkeyAround代表执行时间，单位是s，默认如果不设置时间，会一直执行下去.  <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// - Parameter duration: The duration for which to generate the random events.</span></div><div class="line"><span class="comment">///                       Set to `.infinity` by default.</span></div><div class="line">public func monkeyAround(forDuration duration: TimeInterval = .infinity) &#123;</div><div class="line">    let monkeyTestingTime = Date().timeIntervalSince1970</div><div class="line">    repeat &#123;</div><div class="line">        actRandomly()</div><div class="line">        actRegularly()</div><div class="line">    &#125; <span class="keyword">while</span> ((Date().timeIntervalSince1970 - monkeyTestingTime) &lt; duration)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>在<code>func testMonkey</code>中设置如下控制monkey次数  </p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 如果指定次数，请调用这个函数</span></div><div class="line"></div><div class="line">monkey.monkeyAround(iterations: <span class="number">1024</span>)</div><div class="line"></div><div class="line"><span class="comment">// 如果不指定次数，将一直运行测试</span></div><div class="line"></div><div class="line">monkey.monkeyAround()</div></pre></td></tr></table></figure>
+<p>在<code>func testMonkey</code>中设置如下控制monkey时间  </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 如果指定时间，请调用这个函数</span></div><div class="line"></div><div class="line">monkey.monkeyAround(duration: <span class="number">3000</span>)</div><div class="line"></div><div class="line"><span class="comment">// 如果不指定次数，将一直运行测试</span></div><div class="line"></div><div class="line">monkey.monkeyAround()</div></pre></td></tr></table></figure>
 
       
     </div>
