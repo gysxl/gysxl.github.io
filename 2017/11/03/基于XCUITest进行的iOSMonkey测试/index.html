@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
+<meta name="description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃，如何基于 XCUITesting 框架的 进行monkey 测试 ——SwiftMonkey。其实从Xcode升级到现在也有一年多了，这个工具现在网上的介绍也开始纷呈起来，但是还是打算记录一下自己的使用过程，主要是有些地方，在网上看到的很多资料都有问题后来自己混编了Swift源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于XCUITest进行的iOSMonkey测试">
 <meta property="og:url" content="http://yoursite.com/2017/11/03/基于XCUITest进行的iOSMonkey测试/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
-<meta property="og:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
+<meta property="og:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃，如何基于 XCUITesting 框架的 进行monkey 测试 ——SwiftMonkey。其实从Xcode升级到现在也有一年多了，这个工具现在网上的介绍也开始纷呈起来，但是还是打算记录一下自己的使用过程，主要是有些地方，在网上看到的很多资料都有问题后来自己混编了Swift源码">
 <meta property="og:image" content="http://yoursite.com/images/ImportCode.png">
 <meta property="og:image" content="http://yoursite.com/images/ImportPro.png">
 <meta property="og:image" content="http://yoursite.com/images/NewTarget.png">
@@ -109,10 +109,10 @@
 <meta property="og:image" content="http://yoursite.com/images/bridge1.png">
 <meta property="og:image" content="http://yoursite.com/images/bridge2.png">
 <meta property="og:image" content="http://yoursite.com/images/bridge3.png">
-<meta property="og:updated_time" content="2017-11-08T13:44:56.853Z">
+<meta property="og:updated_time" content="2017-11-09T07:40:15.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于XCUITest进行的iOSMonkey测试">
-<meta name="twitter:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— https://github.com/zalando/SwiftMonkey  总体介绍先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测">
+<meta name="twitter:description" content="本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃，如何基于 XCUITesting 框架的 进行monkey 测试 ——SwiftMonkey。其实从Xcode升级到现在也有一年多了，这个工具现在网上的介绍也开始纷呈起来，但是还是打算记录一下自己的使用过程，主要是有些地方，在网上看到的很多资料都有问题后来自己混编了Swift源码">
 <meta name="twitter:image" content="http://yoursite.com/images/ImportCode.png">
 
 
@@ -332,7 +332,7 @@
 
       
         <blockquote>
-<p>本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃后，歪果仁大神们又整理出的一套基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a></p>
+<p>本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃，如何基于 XCUITesting 框架的 进行monkey 测试 ——SwiftMonkey。其实从Xcode升级到现在也有一年多了，这个工具现在网上的介绍也开始纷呈起来，但是还是打算记录一下自己的使用过程，主要是有些地方，在网上看到的很多资料都有问题后来自己混编了Swift源码，才搞清楚，所以希望本文还是能给摸索而来的tester们一点启示。<br>源码的GitHub地址： <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a></p>
 </blockquote>
 <h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测试，基本在功能验证bug收敛阶段引入，主要用于测试APP的稳定性，一般常见的crash闪退以及卡死问题都会影响APP的稳定性。<br>本文会在之前自学iOS时写的半废弃状态的练手APP天气预报作为demo做monkeyTest，首次使用可以直接拉代码实验，代码地址：<a href="https://github.com/gysxl/WeatherRequest" target="_blank" rel="external">git@github.com:gysxl/WeatherRequest.git</a><br>总体来说，在你的项目中添加monkey测试，主要分为以下几步：  </p>
 <ul>
