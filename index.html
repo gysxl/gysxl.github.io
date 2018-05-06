@@ -201,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -211,7 +211,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -254,6 +254,260 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/如何发布一个iOS全新APP-从证书管理到Jenkins任务上的archive打包上传/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="单晓兰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/sxl.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兰小妞滴Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/02/如何发布一个iOS全新APP-从证书管理到Jenkins任务上的archive打包上传/" itemprop="url">如何发布一个iOS全新APP--从证书管理到Jenkins任务上的archive打包上传</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-02T21:24:27+08:00">
+                May 2 2018
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/使用appium进行iOS真机自动化测试之环境入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="单晓兰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/sxl.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兰小妞滴Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/02/使用appium进行iOS真机自动化测试之环境入门/" itemprop="url">使用appium进行iOS真机自动化测试之环境入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-02T21:19:35+08:00">
+                May 2 2018
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>之前刚接触客户端测试的时候，appium还是1.5，xcode还是7，那时的苹果还支持UIAutomation框架，当时的UI自动化case写的也是很顺利，后来xcode升级后，楼主试用过beta版本的1.6的appium维护之前的case，当时还没有对应的最新版的客户端，所以当时获取界面元素，楼主还是很low逼的使用打印页面的方式。后来跳槽后，新的环境并没有UI自动化这种东西，所以一直就废弃了，不过有个比较头疼的问题一直存在，核心埋点问题，埋点的异常会导致各种大盘数据的抖动，为了保证核心埋点的稳定，打算重新搞一搞appium，利用UI自动化去校验核心埋点。在重新配置appium环境的时候默默的表示还是遇到了很多坑的，所以就记录一下，给同行的tester们一点启示。</p>
+</blockquote>
+<h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>本文会介绍包括xcode7以及最新的xcode9的对应的appium的使用小记，不过之前版本的很多疑问点已经没有印象了，所以会着重记录新版本的appium与xcode的使用心得。之前在运行过程中，一直对WD编译成功后的一个server地址感兴趣，就在网上找的过一篇博客，博主主要从appium原理层面分析的一下appium，虽然不是非常深刻，但个人觉得值得大家读一读：<a href="https://bestswifter.com/appium/" target="_blank" rel="external">Appium 从入门到原理</a><br>本文主要分为如下几个部分：</p>
+<ul>
+<li>新版的appium以及相关依赖的安装</li>
+<li>WebDriverAgent的安装与运行</li>
+<li>Appium-Desktop安装与运行  </li>
+<li>DesiredCapabilities参数设置</li>
+<li>遇到的问题点记录</li>
+</ul>
+<h2 id="新版appium以及相关依赖安装"><a href="#新版appium以及相关依赖安装" class="headerlink" title="新版appium以及相关依赖安装"></a>新版appium以及相关依赖安装</h2><h3 id="安装必备的依赖"><a href="#安装必备的依赖" class="headerlink" title="安装必备的依赖"></a>安装必备的依赖</h3><ul>
+<li><p>libimobiledevice<br>appium iOS真机调试依赖一个重要的第三方开源包：<a href="http://www.libimobiledevice.org/" target="_blank" rel="external">libimobiledevice</a>，它同iTools一样，都是可以替代iTunes，进行iOS设备管理的工具,使用Homebrew可以轻松获取并安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install libimobiledevice</div></pre></td></tr></table></figure>
+</li>
+<li><p>ios-deploy<br>ios-deploy是一个使用命令行安装ios app到连接的设备的工具，原理是根据os x命令行工程调用系统底层函数，获取连接的设备、查询/安装/卸载app。类似的工具有Fruitstrap，ideviceinstaller、node-ios-device等. 可以使用npm直接安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g ios-deploy</div></pre></td></tr></table></figure>
+</li>
+<li><p>appium安装<br>appium本质上就是一个Nodejs应用，我们可以使用npm直接进行安装，安装完毕后就可以直接命令行启动了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g appium</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>本地已有老版本appium时，使用上面的命令可直接更新至最新版本，或者指定版本：</p>
+<ul>
+<li>appium-doctor<br>appium-doctor是用来检测安装环境是否正常的命令，同样使用npm直接安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install appium-doctor -g</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>安装成功后，使用该命令可以检测安装环境：<code>appium-doctor --ios</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">➜  automaster-ios git:(UGC) appium-doctor --ios</div><div class="line">info AppiumDoctor Appium Doctor v.1.4.3</div><div class="line">info AppiumDoctor ### Diagnostic starting ###</div><div class="line">info AppiumDoctor  ✔ The Node.js binary was found at: /usr/local/bin/node</div><div class="line">info AppiumDoctor  ✔ Node version is 8.0.0</div><div class="line">info AppiumDoctor  ✔ Xcode is installed at: /Applications/Xcode.app/Contents/Developer</div><div class="line">info AppiumDoctor  ✔ Xcode Command Line Tools are installed.</div><div class="line">info AppiumDoctor  ✔ DevToolsSecurity is enabled.</div><div class="line">info AppiumDoctor  ✔ The Authorization DB is set up properly.</div><div class="line">info AppiumDoctor  ✔ Carthage was found at: /usr/local/bin/carthage</div><div class="line">info AppiumDoctor  ✔ HOME is set to: /Users/didi</div><div class="line">info AppiumDoctor ### Diagnostic completed, no fix needed. ###</div><div class="line">info AppiumDoctor</div><div class="line">info AppiumDoctor Everything looks good, bye!</div><div class="line">info AppiumDoctor</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/02/使用appium进行iOS真机自动化测试之环境入门/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/03/基于XCUITest进行的iOSMonkey测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -283,7 +537,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T19:35:33+08:00">
                 Nov 3 2017
@@ -322,7 +576,7 @@
       
         
           <blockquote>
-<p>本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃，如何基于 XCUITesting 框架的 进行monkey 测试 ——SwiftMonkey。其实从Xcode升级到现在也有一年多了，这个工具现在网上的介绍也开始纷呈起来，但是还是打算记录一下自己的使用过程，主要是有些地方，在网上看到的很多资料都有问题后来自己混编了Swift源码，才搞清楚，所以希望本文还是能给摸索而来的tester们一点启示。<br>源码的GitHub地址： <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a></p>
+<p>本文主要用于介绍由于iOS与Xcode升级，之前很多iOS端的QA同学赖以生存UIAutomation框架被无情废弃，如何基于 XCUITesting进行monkey测试 ——SwiftMonkey。其实从Xcode升级到现在也有一年多了，这个工具现在网上的介绍也开始纷呈起来，但是还是打算记录一下自己的使用过程，主要是有些地方，在网上看到的很多资料都有问题后来自己混编了Swift源码，才搞清楚，所以希望本文还是能给摸索而来的tester们一点启示。<br>源码的GitHub地址： <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a></p>
 </blockquote>
 <h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>先大概介绍一个monkey测试，简单说就是模拟一个monkey（淘气的猴子）的一种针对APP的随机测试，基本在功能验证bug收敛阶段引入，主要用于测试APP的稳定性，一般常见的crash闪退以及卡死问题都会影响APP的稳定性。<br>本文会在之前自学iOS时写的半废弃状态的练手APP天气预报作为demo做monkeyTest，首次使用可以直接拉代码实验，代码地址：<a href="https://github.com/gysxl/WeatherRequest" target="_blank" rel="external">git@github.com:gysxl/WeatherRequest.git</a><br>总体来说，在你的项目中添加monkey测试，主要分为以下几步：  </p>
 <ul>
@@ -333,13 +587,13 @@
 <li>锦上添花添加手势记录</li>
 </ul>
 <h2 id="添加monkey工具源码"><a href="#添加monkey工具源码" class="headerlink" title="添加monkey工具源码"></a>添加monkey工具源码</h2><p>前言已经提到过，本文所用到的主要是一个基于 XCUITesting 框架的 monkey 工具 —— <a href="https://github.com/zalando/SwiftMonkey" target="_blank" rel="external">https://github.com/zalando/SwiftMonkey</a> ，所以首先肯定要将人家的源码down下来，PS：能翻墙最好翻个墙，干啥都能快一些，也不会遇到什么乱七八糟的错误。<br>下载下来后，需要把目录中的SwiftMonkey与SwiftMonkeyPaws文件复制到你的项目目录中，参考我下图的文件结构：<br><img src="/images/ImportCode.png" alt=""><br>然后把这两个项目的.xcodeproj拖到你的项目中，如下所示：<br><img src="/images/ImportPro.png" alt=""><br>以上代码拖入的工作就完成了，这个是比较直观的拖入操作，其实也可以通过pod集成的方式直接导入，直接通过修改pod库文件，修改部分如下（具体的根据自己的项目来调整，不过表示我还没尝试这种方法，只是先普及一下）：  </p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">target <span class="string">"App"</span> <span class="built_in">do</span>   <span class="comment">//App为自己的工程名</span></div><div class="line">    pod <span class="string">"SwiftMonkeyPaws"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="built_in">end</span></div><div class="line"></div><div class="line">target <span class="string">"Tests"</span> <span class="built_in">do</span> <span class="comment">//Test为text对应的Target名</span></div><div class="line">    pod <span class="string">"SwiftMonkey"</span>, <span class="string">"~&gt; 1.0"</span></div><div class="line"><span class="built_in">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">target &quot;App&quot; do   //App为自己的工程名</div><div class="line">    pod &quot;SwiftMonkeyPaws&quot;, &quot;~&gt; 1.0&quot;</div><div class="line">end</div><div class="line"></div><div class="line">target &quot;Tests&quot; do //Test为text对应的Target名</div><div class="line">    pod &quot;SwiftMonkey&quot;, &quot;~&gt; 1.0&quot;</div><div class="line">end</div></pre></td></tr></table></figure>
 <p>然后通过 <code>pod install</code> 的方式集成       </p>
 <h2 id="新建并配置UI-testing-target"><a href="#新建并配置UI-testing-target" class="headerlink" title="新建并配置UI testing target"></a>新建并配置UI testing target</h2><p>现在项目中添加一个新的target，依次选择file——&gt;new——&gt;target,最后选择iOS UI testing Bundle：<br><img src="/images/NewTarget.png" alt=""><br>点击next后就配置一些target的信息，这里需要注意的是，由于这个工具是用swift写的，所以需要选择的语言是Swift，其他的参考下面的配置然后根据个人的项目修改就可：<br><img src="/images/OptionsForMonkey.png" alt=""><br>配置相关的target信息：<br><img src="/images/setting1.png" alt=""><br><img src="/images/setting2.png" alt=""><br>需要注意的是，由于工具是用Swift编写的，所以需要在项目中的build setting中勾选上Swift的标准库，否则不能集成工具库，而且新建的target需要注册成功，勾选你的证书什么的注册一下就好。如下图所示：<br><img src="/images/setting3.png" alt=""><br><img src="/images/setting4.png" alt=""><br>以上就配置完成了！  </p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/03/基于XCUITest进行的iOSMonkey测试/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -413,7 +667,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T14:03:34+08:00">
                 Jun 23 2017
@@ -477,7 +731,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/23/闪瞎眼健身app概要设计/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -551,7 +805,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T16:38:28+08:00">
                 Jun 13 2017
@@ -662,7 +916,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:52:05+08:00">
                 May 25 2017
@@ -731,7 +985,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/UITableView-基本使用方法总结/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -805,7 +1059,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:51:48+08:00">
                 May 25 2017
@@ -868,7 +1122,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/iOS-objective-c实现定位当前城市/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -942,7 +1196,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T15:50:53+08:00">
                 May 25 2017
@@ -1010,7 +1264,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/android客户端手动测试代码覆盖率统计/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1084,7 +1338,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T19:00:40+08:00">
                 May 24 2017
@@ -1134,7 +1388,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1208,7 +1462,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T18:57:25+08:00">
                 May 24 2017
@@ -1262,128 +1516,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/#more" rel="contents">
-              Weiterlesen &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/24/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="单晓兰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/sxl.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="兰小妞滴Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/24/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T18:09:55+08:00">
-                May 24 2017
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/24/hello-world/#more" rel="contents">
-              Weiterlesen &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1422,6 +1555,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1464,8 +1601,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1510,7 +1647,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1519,7 +1656,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

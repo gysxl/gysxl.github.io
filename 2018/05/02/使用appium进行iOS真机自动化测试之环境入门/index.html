@@ -1,0 +1,821 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en_us">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="之前刚接触客户端测试的时候，appium还是1.5，xcode还是7，那时的苹果还支持UIAutomation框架，当时的UI自动化case写的也是很顺利，后来xcode升级后，楼主试用过beta版本的1.6的appium维护之前的case，当时还没有对应的最新版的客户端，所以当时获取界面元素，楼主还是很low逼的使用打印页面的方式。后来跳槽后，新的环境并没有UI自动化这种东西，所以一直就废弃了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用appium进行iOS真机自动化测试之环境入门">
+<meta property="og:url" content="http://yoursite.com/2018/05/02/使用appium进行iOS真机自动化测试之环境入门/index.html">
+<meta property="og:site_name" content="兰小妞滴Blog">
+<meta property="og:description" content="之前刚接触客户端测试的时候，appium还是1.5，xcode还是7，那时的苹果还支持UIAutomation框架，当时的UI自动化case写的也是很顺利，后来xcode升级后，楼主试用过beta版本的1.6的appium维护之前的case，当时还没有对应的最新版的客户端，所以当时获取界面元素，楼主还是很low逼的使用打印页面的方式。后来跳槽后，新的环境并没有UI自动化这种东西，所以一直就废弃了">
+<meta property="og:image" content="http://yoursite.com/images/appium_1.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_2.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_3.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_6.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_7.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_8.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_9.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_10.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_5.png">
+<meta property="og:image" content="http://yoursite.com/images/appium_4.png">
+<meta property="og:updated_time" content="2018-05-06T03:42:17.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用appium进行iOS真机自动化测试之环境入门">
+<meta name="twitter:description" content="之前刚接触客户端测试的时候，appium还是1.5，xcode还是7，那时的苹果还支持UIAutomation框架，当时的UI自动化case写的也是很顺利，后来xcode升级后，楼主试用过beta版本的1.6的appium维护之前的case，当时还没有对应的最新版的客户端，所以当时获取界面元素，楼主还是很low逼的使用打印页面的方式。后来跳槽后，新的环境并没有UI自动化这种东西，所以一直就废弃了">
+<meta name="twitter:image" content="http://yoursite.com/images/appium_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/02/使用appium进行iOS真机自动化测试之环境入门/"/>
+
+
+
+
+
+  <title>使用appium进行iOS真机自动化测试之环境入门 | 兰小妞滴Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en_us">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">兰小妞滴Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/使用appium进行iOS真机自动化测试之环境入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="单晓兰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/sxl.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兰小妞滴Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用appium进行iOS真机自动化测试之环境入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-02T21:19:35+08:00">
+                May 2 2018
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>之前刚接触客户端测试的时候，appium还是1.5，xcode还是7，那时的苹果还支持UIAutomation框架，当时的UI自动化case写的也是很顺利，后来xcode升级后，楼主试用过beta版本的1.6的appium维护之前的case，当时还没有对应的最新版的客户端，所以当时获取界面元素，楼主还是很low逼的使用打印页面的方式。后来跳槽后，新的环境并没有UI自动化这种东西，所以一直就废弃了，不过有个比较头疼的问题一直存在，核心埋点问题，埋点的异常会导致各种大盘数据的抖动，为了保证核心埋点的稳定，打算重新搞一搞appium，利用UI自动化去校验核心埋点。在重新配置appium环境的时候默默的表示还是遇到了很多坑的，所以就记录一下，给同行的tester们一点启示。</p>
+</blockquote>
+<h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>本文会介绍包括xcode7以及最新的xcode9的对应的appium的使用小记，不过之前版本的很多疑问点已经没有印象了，所以会着重记录新版本的appium与xcode的使用心得。之前在运行过程中，一直对WD编译成功后的一个server地址感兴趣，就在网上找的过一篇博客，博主主要从appium原理层面分析的一下appium，虽然不是非常深刻，但个人觉得值得大家读一读：<a href="https://bestswifter.com/appium/" target="_blank" rel="external">Appium 从入门到原理</a><br>本文主要分为如下几个部分：</p>
+<ul>
+<li>新版的appium以及相关依赖的安装</li>
+<li>WebDriverAgent的安装与运行</li>
+<li>Appium-Desktop安装与运行  </li>
+<li>DesiredCapabilities参数设置</li>
+<li>遇到的问题点记录</li>
+</ul>
+<h2 id="新版appium以及相关依赖安装"><a href="#新版appium以及相关依赖安装" class="headerlink" title="新版appium以及相关依赖安装"></a>新版appium以及相关依赖安装</h2><h3 id="安装必备的依赖"><a href="#安装必备的依赖" class="headerlink" title="安装必备的依赖"></a>安装必备的依赖</h3><ul>
+<li><p>libimobiledevice<br>appium iOS真机调试依赖一个重要的第三方开源包：<a href="http://www.libimobiledevice.org/" target="_blank" rel="external">libimobiledevice</a>，它同iTools一样，都是可以替代iTunes，进行iOS设备管理的工具,使用Homebrew可以轻松获取并安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install libimobiledevice</div></pre></td></tr></table></figure>
+</li>
+<li><p>ios-deploy<br>ios-deploy是一个使用命令行安装ios app到连接的设备的工具，原理是根据os x命令行工程调用系统底层函数，获取连接的设备、查询/安装/卸载app。类似的工具有Fruitstrap，ideviceinstaller、node-ios-device等. 可以使用npm直接安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g ios-deploy</div></pre></td></tr></table></figure>
+</li>
+<li><p>appium安装<br>appium本质上就是一个Nodejs应用，我们可以使用npm直接进行安装，安装完毕后就可以直接命令行启动了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g appium</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>本地已有老版本appium时，使用上面的命令可直接更新至最新版本，或者指定版本：</p>
+<ul>
+<li>appium-doctor<br>appium-doctor是用来检测安装环境是否正常的命令，同样使用npm直接安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install appium-doctor -g</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>安装成功后，使用该命令可以检测安装环境：<code>appium-doctor --ios</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">➜  automaster-ios git:(UGC) appium-doctor --ios</div><div class="line">info AppiumDoctor Appium Doctor v.1.4.3</div><div class="line">info AppiumDoctor ### Diagnostic starting ###</div><div class="line">info AppiumDoctor  ✔ The Node.js binary was found at: /usr/local/bin/node</div><div class="line">info AppiumDoctor  ✔ Node version is 8.0.0</div><div class="line">info AppiumDoctor  ✔ Xcode is installed at: /Applications/Xcode.app/Contents/Developer</div><div class="line">info AppiumDoctor  ✔ Xcode Command Line Tools are installed.</div><div class="line">info AppiumDoctor  ✔ DevToolsSecurity is enabled.</div><div class="line">info AppiumDoctor  ✔ The Authorization DB is set up properly.</div><div class="line">info AppiumDoctor  ✔ Carthage was found at: /usr/local/bin/carthage</div><div class="line">info AppiumDoctor  ✔ HOME is set to: /Users/didi</div><div class="line">info AppiumDoctor ### Diagnostic completed, no fix needed. ###</div><div class="line">info AppiumDoctor</div><div class="line">info AppiumDoctor Everything looks good, bye!</div><div class="line">info AppiumDoctor</div></pre></td></tr></table></figure></p>
+<p>上面是全部成功的提示，如果在安装过程中某项打叉的，就对应安装就可以。</p>
+<h3 id="替换appium中的WebDriverAgent"><a href="#替换appium中的WebDriverAgent" class="headerlink" title="替换appium中的WebDriverAgent"></a>替换appium中的WebDriverAgent</h3><ul>
+<li>下载最新的WebDriverAgent代码，链接如下：<a href="https://github.com/facebook/WebDriverAgent" target="_blank" rel="external">WebDriverAgent</a></li>
+<li>进入下载后的WebDriverAgent目录，执行<code>./Scripts/bootstrap.sh</code></li>
+<li>直接用Xcode打开该project，<code>WebDriverAgent.xcodeproj</code></li>
+<li>如果使用模拟器测试，此时直接选择模拟器，然后<code>Cmd+U</code>就可以运行了</li>
+<li>真机调试需要配置<code>WebDriverAgentLib</code>和<code>WebDriverAgentRunner</code>的证书 ,勾选你的证书什么的注册一下就好。如下图所示：<br><img src="/images/appium_1.png" alt=""><br><img src="/images/appium_2.png" alt=""><br>其中使用xcode的自动管理证书的方式时，如果是免费版的个人证书，还需要修改下WebDriverAgent的BundleID，我一般会在后面加上我自己的后缀，如下图所示:<br><img src="/images/appium_3.png" alt=""></li>
+<li>此时选中WebDriverAgentRunner这个target，并选中自己的设备，<code>Cmd+U</code>即可顺利运行。运行成功后即可以在Xcode控制台打印出一个ip地址和端口号，具体如下图所示：<br><img src="/images/appium_6.png" alt="">  </li>
+<li>在浏览器输入<code>http://(iP地址):(端口号)/status</code>,如果网页显示了一些json格式的数据，则说明运行成功<br><img src="/images/appium_7.png" alt=""></li>
+<li>进入到Appium中的WebDriverAgent目录，目录路径如下<code>(/Applications/Appium.app/Contents/Resources/app/node_modules/appium/node_modules/appium-xcuitest-driver/)</code>，将自己下载并编译成功后的WebDriverAgent替换Appium原有的WebDriverAgent。</li>
+</ul>
+<h2 id="Appium-Desktop安装与运行"><a href="#Appium-Desktop安装与运行" class="headerlink" title="Appium-Desktop安装与运行"></a>Appium-Desktop安装与运行</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在<a href="https://github.com/appium/appium-desktop/releases/tag/v1.2.0-beta.1" target="_blank" rel="external">Appium-Desktop</a>中下载最新版本的Appium-Desktop.</p>
+<h3 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h3><ul>
+<li>运行Appium-Desktop   </li>
+<li>开启start server</li>
+<li>点击start new session</li>
+<li>在 Desired Capabilities 中输入相关的参数后点击<code>Start Session</code><br><img src="/images/appium_8.png" alt=""></li>
+<li>运行成功后，会弹出一个控制界面，在该界面中可以控制手机上正在运行的程序<br><img src="/images/appium_9.png" alt=""></li>
+<li>点击界面上方中心的录制按钮，可以将你对手机端的操作代码化</li>
+</ul>
+<h2 id="DesiredCapabilities参数设置"><a href="#DesiredCapabilities参数设置" class="headerlink" title="DesiredCapabilities参数设置"></a>DesiredCapabilities参数设置</h2><p>在运行Appium-Desktop时，设置Desired Capabilities参数遇到一些小问题，就顺便看了<a href="https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/caps.md" target="_blank" rel="external">官方版本</a>的针对这些参数的解释，把常用的参数简单翻译了一下，基本如下表所示：  </p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+<th>可选条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>automationName</td>
+<td>想使用的自动化引擎</td>
+<td>Appium, Selendroid</td>
+</tr>
+<tr>
+<td>platformName</td>
+<td>平台的名称</td>
+<td>iOS, Android, FirefoxOS</td>
+</tr>
+<tr>
+<td>platformVersion</td>
+<td>移动设备的系统版本号</td>
+<td>11.0, 10.0</td>
+</tr>
+<tr>
+<td>deviceName</td>
+<td>移动设备的名称</td>
+<td>instruments -s devices获取</td>
+</tr>
+<tr>
+<td>app</td>
+<td>安装包路径</td>
+<td>/abs/path/to/my.apk or <a href="http://myapp.com/app.ipa" target="_blank" rel="external">http://myapp.com/app.ipa</a></td>
+</tr>
+<tr>
+<td>newCommandTimeout</td>
+<td>等待新命令的最长时间，超时后退出</td>
+<td>默认是60s</td>
+</tr>
+<tr>
+<td>language</td>
+<td>模拟器的语言设置</td>
+<td>fr</td>
+</tr>
+<tr>
+<td>locale</td>
+<td>模拟器的地区设置</td>
+<td>fr_CA</td>
+</tr>
+<tr>
+<td>udid</td>
+<td>设备号</td>
+<td>instruments -s devices获取</td>
+</tr>
+<tr>
+<td>orientation</td>
+<td>模拟器的横竖屏设置</td>
+<td>LANDSCAPE or PORTRAIT</td>
+</tr>
+<tr>
+<td>noReset</td>
+<td>在当前session前不重置app状态</td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>fullReset</td>
+<td>ios删除文件夹，Android删除app数据</td>
+<td>true, false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="实际运行"><a href="#实际运行" class="headerlink" title="实际运行"></a>实际运行</h2><h3 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h3><p>楼主一般都是使用Python进行客户端的UI自动化，所以在真正运行楼主的case之前，需要先把相关的依赖环境安装完成</p>
+<ul>
+<li>安装python，一般mac自带<code>brew install python</code></li>
+<li><p>安装Python的appium模块:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone git@github.com:appium/python-client.git</div><div class="line">cd python-client</div><div class="line">python setup.py install</div></pre></td></tr></table></figure>
+</li>
+<li><p>下载测试demo：<br>里面主要写了个简单的iOS工程文件，并包含一个简单的Python测试脚本  </p>
+<h3 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h3></li>
+<li>打开demo工程后，配置target的签名，在Demo的根目录执行编译指令，编译出一个app文件xcodebuild -sdk iphoneos -target XXXXX -configuration Release，编译成功后app文件的地址会打印在命令行中:<br><img src="/images/appium_10.png" alt=""></li>
+<li><p>配置python文件<br>打开appiumSimpleDemo中的appiumSimpleDemo.py文件,将，修改setup中的几个参数，将app的路径，设备的相关信息修改成当前连接设备的信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def  setUp(self):</div><div class="line">  app = os.path.abspath(&apos;/Users/didi/sxl/code/script/appiumSimpleDemo/build/Release-iphoneos/appiumSimpleDemo.app&apos;)</div><div class="line"></div><div class="line">  self.driver = webdriver.Remote(</div><div class="line">    command_executor = &apos;http://127.0.0.1:4723/wd/hub&apos;,</div><div class="line">    desired_capabilities = &#123;</div><div class="line">      &apos;app&apos;:app,</div><div class="line">      &apos;platformName&apos;: &apos;iOS&apos;,</div><div class="line">      &apos;platformVersion&apos;: &apos;11.0&apos;,</div><div class="line">      &apos;deviceName&apos;: &apos;sxliPhone8&apos;,</div><div class="line">      &apos;bundleId&apos;: &apos;com.cvte.appiumSimpleDemo.sxl&apos;,</div><div class="line">      &apos;udid&apos;: &apos;6180d7804ecb56f73154340edb482a72b09351c4&apos;</div><div class="line">    &#125;</div><div class="line">    )</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行Appium程序<br>打开之前下载安装的Appium，并开启服务。</p>
+</li>
+<li><p>运行python测试文件<br>在appiumSimpleDemo.py所在的目录运行<code>python appiumSimpleDemo.py</code>，如果之前设置都没有出错，那么程序应该会在手机上成功运行，并自动点击了entry next view进入到了下一个界面，过了2s后会重新返回第一个界面</p>
+</li>
+</ul>
+<h2 id="问题小记"><a href="#问题小记" class="headerlink" title="问题小记"></a>问题小记</h2><ul>
+<li><p>Could not launch “WebDriverAgentRunner”<br>首次运行WebDriverAgentRunner时会出现如下图的报错，该报错主要测试机未信任该开发者，遇到这种情况，去测试机的设置–通用–描述文件与设备管理–找到当前开发者账号的应用，点击信任即可。<br><img src="/images/appium_5.png" alt=""></p>
+</li>
+<li><p>WD安装失败App installation FAILED<br>WDtest成功一次后，再次编译时，偶现会出现如下的报错信息：<br><img src="/images/appium_4.png" alt=""><br>出现这个问题主要是覆盖安装的原因，把测试机上的WD删除后重新运行即可成功</p>
+</li>
+<li><p>WebDriverAgentRunner运行成功后，链接打不开<br>有些机器通过手机的IP和端口还是不能访问，这种时候需要将手机的端口转发到Mac上，解决这个问题的时候，楼主先是尝试了使用iproxy的方式，具体命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iproxy 8100 8100</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此时通过访问<code>http://localhost:8100/status</code>可确认WDA是否运行成功，而inspector的地址是<code>http://localhost:8100/inspector</code>， inspector是用来查看UI的图层，方便写测试脚本用的。<br>使用这种方式有一点比较不能忍，进程杀了之后的转发就停止不可用了，所以在此在提供另外一种方式：<br><code>sudo vi /etc/hosts</code><br>加：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">127.0.0.1 localhost</div></pre></td></tr></table></figure></p>
+<ul>
+<li>appium客户端Start Session时报错，original error:SDK ‘11.0’not in list of simctl sdks</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/03/基于XCUITest进行的iOSMonkey测试/" rel="next" title="基于XCUITest进行的iOSMonkey测试">
+                <i class="fa fa-chevron-left"></i> 基于XCUITest进行的iOSMonkey测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/02/如何发布一个iOS全新APP-从证书管理到Jenkins任务上的archive打包上传/" rel="prev" title="如何发布一个iOS全新APP--从证书管理到Jenkins任务上的archive打包上传">
+                如何发布一个iOS全新APP--从证书管理到Jenkins任务上的archive打包上传 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/sxl.png"
+               alt="单晓兰" />
+          <p class="site-author-name" itemprop="name">单晓兰</p>
+           
+              <p class="site-description motion-element" itemprop="description">学习，积累，成长</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总体介绍"><span class="nav-number">1.</span> <span class="nav-text">总体介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新版appium以及相关依赖安装"><span class="nav-number">2.</span> <span class="nav-text">新版appium以及相关依赖安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装必备的依赖"><span class="nav-number">2.1.</span> <span class="nav-text">安装必备的依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换appium中的WebDriverAgent"><span class="nav-number">2.2.</span> <span class="nav-text">替换appium中的WebDriverAgent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appium-Desktop安装与运行"><span class="nav-number">3.</span> <span class="nav-text">Appium-Desktop安装与运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行程序"><span class="nav-number">3.2.</span> <span class="nav-text">运行程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DesiredCapabilities参数设置"><span class="nav-number">4.</span> <span class="nav-text">DesiredCapabilities参数设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际运行"><span class="nav-number">5.</span> <span class="nav-text">实际运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境依赖"><span class="nav-number">5.1.</span> <span class="nav-text">环境依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行脚本"><span class="nav-number">5.2.</span> <span class="nav-text">运行脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题小记"><span class="nav-number">6.</span> <span class="nav-text">问题小记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">单晓兰</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
