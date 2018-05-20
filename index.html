@@ -201,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -211,7 +211,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -254,6 +254,139 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/Xcode无线真机调试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="单晓兰">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/sxl.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="兰小妞滴Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/07/Xcode无线真机调试/" itemprop="url">Xcode无线真机调试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T14:06:07+08:00">
+                May 7 2018
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>一般情况下Xcode调试肯定是数据线链接真机比较稳妥，但是作为一枚好说话的客户端测开，有时真有一种把客户端RD宠成baby的节奏。每天上班都会发现数据线不翼而飞，RD总有一种吃数据线的本领，导致经常遇到没有数据线调试的尴尬场景；And偶尔回家没事想自己研究点东西的时候，就经常需要运行个demo什么的到手机上，又几乎从来不会带转接头这种东西回家。。。。。所以只能尝试无线真机调试，所以才有了此文，比较简单，作为笔记记录一下。</p>
+</blockquote>
+<h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><p>无线调试是WWDC2017的新功能，iOS11以上，Xcode9这是刚性要求。</p>
+<ul>
+<li>至少Mac OSX 10.12.6</li>
+<li>iOS 11</li>
+<li>Xcode 9</li>
+</ul>
+<h2 id="使用无线进行设备链接"><a href="#使用无线进行设备链接" class="headerlink" title="使用无线进行设备链接"></a>使用无线进行设备链接</h2><ul>
+<li>手机连接上Xcode，打开Xcode菜单：Windows-&gt;Device and Simulators。找到连接上的设备，把Connect via network选项打勾。<br><img src="/images/xcode_2.png" alt=""></li>
+<li>此时，拔掉数据线，在Xcode选择打包设备时即可发现刚刚被拔掉数据线的设备。但是设备链接出显示该设备处于“Disconnected”状态，且一直loading。  </li>
+<li>回到刚刚的设备列表中，选中手机右键，在出来的选项卡中选择一个“Connect via IP Address”项。选择之后输入手机的局域网ip地址。<br><img src="/images/xcode_3.png" alt=""></li>
+<li>连接完成后可以看到在连接的手机右边有一个地球连接标志，长这样<br><img src="/images/xcode_1.png" alt=""></li>
+<li>完成后可以看到在连接的手机邮编出现一个地球连接标记，如下图所示：<br><img src="/images/xcode_4.png" alt=""><br>完成上述操作后就能脱离数据线的束缚了，后续在编译选择设备时，可直接选择该设备进行编译。</li>
+</ul>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>楼主第一次成功后，想重新连接截图记录一下，所以删了想重来，就死也连接不上了，各种找资料无果，最后是重启了Mac搞定的，遇到同样问题的小伙伴可以尝试重启。</p>
+
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/07/Xcode无线真机调试/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/如何发布一个iOS全新APP-从证书管理到Jenkins任务上的archive打包上传/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -283,7 +416,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-02T21:24:27+08:00">
                 May 2 2018
@@ -321,9 +454,25 @@
 
       
         
-          
-            
-          
+          <blockquote>
+<p>楼主之前在的公司是有专门的EP部门管理iOS客户端的证书、打包、上传什么的一堆逻辑，这块东西基本上对楼主来说是黑盒的。去年跳槽到新的公司后，发现这边的部门间都是独立管理自己的所有事情，不存在一个类似于全公司的EP的部门存在，而且楼主去的是个新成立的部门，就遇到了几乎是从0到1的全新APP的上架问题，头疼的搞了差不多一周多，最终是整了一套完整的证书与打包机制，但是当时一直没有搞懂里面的一些校验机制与推送机制，所以一直没敢出文记录，直到前几天收到PUSH证书快到期的提示，被迫硬着头皮搞了一遍PUSH证书，这才算是大致理解了苹果爸爸这一整套机制，怕自己忘记，所以markdown一下。纯属个人理解，有问题请帮忙指出。  </p>
+</blockquote>
+<h2 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h2><p>本文会从实用主义的如何对一个已有的工程进行证书与PP描述文件进行配置、对一个已建立好的appid进行PUSH证书的配置以及根据个人的整理与理解，浅谈一下iOS的签名机制。  </p>
+<ul>
+<li>浅谈iOS签名与校验机制</li>
+<li>从无到有创建一个已有项目的开发证书</li>
+<li>创建项目对应的推送证书</li>
+</ul>
+<h2 id="浅谈iOS签名与校验机制"><a href="#浅谈iOS签名与校验机制" class="headerlink" title="浅谈iOS签名与校验机制"></a>浅谈iOS签名与校验机制</h2><p>众所周知，iOS的签名与校验机制是非常复杂又混乱，一个独立的APP从生成打包到发版，其中你会遇到以下各种概念与文件，各种证书、Provisioning Profile、CertificateSigningRequest、p12、p12、APPID等。本文是在阅读了bang大神的博客后，加上自己操作发布了一款app后对这套流程有了一个大致清晰的理解。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在苹果的iOS系统之前，我们所熟悉的操作系统，比如linux、Windows、Mac等，都是可以直接通过下载安装包然后，双击或者其他方式去安装。这样就导致随便在哪下载了一个安装包后都能运行，导致平台很难控制盗版或者是其他恶意的传播。但是苹果对安装在iOS系统上的每个APP都有绝对的掌控权，主要就是通过这一套复杂的数字签名与校验实现的。  </p>
+<h3 id="数字签名机制"><a href="#数字签名机制" class="headerlink" title="数字签名机制"></a>数字签名机制</h3><p>数字签名机制就是通过将摘要算法和非对称加密算法结合到一起实现的。<br>其中摘要算法是通过将任意长度的文本，通过一个算法（常见的有MD5、SHA等），得到一个固定长度的文本。<br>对称加密算法是通过同一份秘钥加密和解密数据，而非对称加密算法则是有两份秘钥：公钥和私钥，生成者负责生成私钥与公钥，并保存私钥，公开公钥；公钥是公开的，但不可能通过公钥反推出私钥，或者说极难反推，只能穷举，所以只要密钥足够长度，要通过穷举而得到私钥，几乎是不可能的；通过私钥加密的密文只能通过公钥解密，公钥加密的密文只有通过私钥解密。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/02/如何发布一个iOS全新APP-从证书管理到Jenkins任务上的archive打包上传/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -394,7 +543,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-02T21:19:35+08:00">
                 May 2 2018
@@ -463,7 +612,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/02/使用appium进行iOS真机自动化测试之环境入门/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -537,7 +686,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T19:35:33+08:00">
                 Nov 3 2017
@@ -593,7 +742,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/03/基于XCUITest进行的iOSMonkey测试/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -667,7 +816,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T14:03:34+08:00">
                 Jun 23 2017
@@ -731,7 +880,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/23/闪瞎眼健身app概要设计/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -805,7 +954,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T16:38:28+08:00">
                 Jun 13 2017
@@ -916,7 +1065,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:52:05+08:00">
                 May 25 2017
@@ -985,7 +1134,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/UITableView-基本使用方法总结/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1059,7 +1208,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T18:51:48+08:00">
                 May 25 2017
@@ -1122,7 +1271,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/iOS-objective-c实现定位当前城市/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1196,7 +1345,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T15:50:53+08:00">
                 May 25 2017
@@ -1264,7 +1413,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/25/android客户端手动测试代码覆盖率统计/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1338,7 +1487,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T19:00:40+08:00">
                 May 24 2017
@@ -1388,135 +1537,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/24/iOS静态代码扫描工具Fauxpas的使用小记/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="单晓兰">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/sxl.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="兰小妞滴Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/" itemprop="url">xcode8升级后基于XCUITest进行自动化测试的踩坑之旅</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T18:57:25+08:00">
-                May 24 2017
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>自从xcode8与ios10发布之后，使用appium做ios自动化测试的就苦逼了。appium团队在连续发布1.6的三个beat版本试用之后总是有这样那样的问题，不过还是怀着一颗兴奋的心情迫不及待的投入试用过程中，试用过程如下：  </p>
-</blockquote>
-<p><em>首先需要强调的是，由于这个还是beta版本，很多东西都需要源码进行，所以重要的事情强调三遍：安装新版appium请翻墙！安装新版appium请翻墙！安装新版appium请翻墙！</em>  </p>
-<h2 id="appium-1-6的npm安装"><a href="#appium-1-6的npm安装" class="headerlink" title="appium 1.6的npm安装"></a>appium 1.6的npm安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g appium@beta</div></pre></td></tr></table></figure>
-<ul>
-<li>安装新版appium首先需要将本地的老版本appium删除  </li>
-<li>新版appium安装需要依赖的node版本需要是最新版的(我也不知道为什么，网上也没有找到原因，但是升级了最新的node后安装就莫名其妙的搞定了)<br>我本地的版本如下所示：   <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">~ npm --version  </div><div class="line">3.10.8  </div><div class="line">~ node --version  </div><div class="line">v7.0.0</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="appium1-6的底层依赖"><a href="#appium1-6的底层依赖" class="headerlink" title="appium1.6的底层依赖"></a>appium1.6的底层依赖</h2><p>appium1.6会用到webdriverAgent,按照如下链接安装<br><a href="https://github.com/facebook/WebDriverAgent" target="_blank" rel="external">WebDriverAgent</a>  </p>
-<h2 id="修改所依赖的jar包"><a href="#修改所依赖的jar包" class="headerlink" title="修改所依赖的jar包"></a>修改所依赖的jar包</h2><p>实际在跑case的时候，总会遇到各种各样的报错，当时着急找方案解决，忘记记录下报错信息了，尴尬ing。。。<br>总结起来appium升级后对于本地的影响最大的还是做依赖的jar包版本，特别是基于某些内部的框架进行编写时，需要修改的jar包主要是selenium相关的各种jar包，具体修改的jar包与版本如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-rw-r--r--   1 didi  staff    94973 11 28 19:03 selenium-api-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     9567 11 28 19:05 selenium-chrome-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     4907 11 28 19:06 selenium-edge-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff   764941 11 28 19:07 selenium-firefox-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     9816 11 28 19:07 selenium-ie-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff      379 11 28 19:08 selenium-java-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff     7829 11 28 19:08 selenium-opera-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff   310403 11 28 19:10 selenium-remote-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff    37999 11 28 19:11 selenium-safari-driver-3.0.1.jar</div><div class="line">-rw-r--r--   1 didi  staff   170335 11 28 19:12 selenium-support-3.0.1.jar</div></pre></td></tr></table></figure></p>
-<p>PS：如何下载以及导入jar包，自行搜索   </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/24/xcode8升级后基于XCUITest进行自动化测试的踩坑之旅/#more" rel="contents">
-              Read more &raquo;
+              Weiterlesen &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1601,8 +1622,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1656,7 +1677,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
