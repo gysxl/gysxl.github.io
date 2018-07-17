@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="xcode," />
+  <meta name="keywords" content="PUSH证书," />
 
 
 
@@ -90,22 +90,30 @@
 
 
 
-<meta name="description" content="一般情况下Xcode调试肯定是数据线链接真机比较稳妥，但是作为一枚好说话的客户端测开，有时真有一种把客户端RD宠成baby的节奏。每天上班都会发现数据线不翼而飞，RD总有一种吃数据线的本领，导致经常遇到没有数据线调试的尴尬场景；And偶尔回家没事想自己研究点东西的时候，就经常需要运行个demo什么的到手机上，又几乎从来不会带转接头这种东西回家。。。。。所以只能尝试无线真机调试，所以才有了此文，比">
-<meta name="keywords" content="xcode">
+<meta name="description" content="无论是iPhone还是android，我们用到的所有的应用基本上都是有推送通知服务的，这是应用很好的推广方式。上一章我们简单讲了下苹果的安全验证机制就可说明，苹果对这些跟用户相关的信息的把控是很严格的，push也不例外，苹果的推送需要发到苹果的服务器上中转一下，也就是我们大家熟知的苹果的推送通知服务：APNs（Apple Push Notification service),例如友盟，极光之类的">
+<meta name="keywords" content="PUSH证书">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xcode无线真机调试">
-<meta property="og:url" content="http://yoursite.com/2018/05/07/Xcode无线真机调试/index.html">
+<meta property="og:title" content="iOS --推送证书的创建及过期处理">
+<meta property="og:url" content="http://yoursite.com/2018/07/17/iOS-推送证书的创建及过期处理/index.html">
 <meta property="og:site_name" content="兰小妞滴Blog">
-<meta property="og:description" content="一般情况下Xcode调试肯定是数据线链接真机比较稳妥，但是作为一枚好说话的客户端测开，有时真有一种把客户端RD宠成baby的节奏。每天上班都会发现数据线不翼而飞，RD总有一种吃数据线的本领，导致经常遇到没有数据线调试的尴尬场景；And偶尔回家没事想自己研究点东西的时候，就经常需要运行个demo什么的到手机上，又几乎从来不会带转接头这种东西回家。。。。。所以只能尝试无线真机调试，所以才有了此文，比">
-<meta property="og:image" content="http://yoursite.com/images/xcode_2.png">
-<meta property="og:image" content="http://yoursite.com/images/xcode_3.png">
-<meta property="og:image" content="http://yoursite.com/images/xcode_1.png">
-<meta property="og:image" content="http://yoursite.com/images/xcode_4.png">
-<meta property="og:updated_time" content="2018-07-10T06:37:02.948Z">
+<meta property="og:description" content="无论是iPhone还是android，我们用到的所有的应用基本上都是有推送通知服务的，这是应用很好的推广方式。上一章我们简单讲了下苹果的安全验证机制就可说明，苹果对这些跟用户相关的信息的把控是很严格的，push也不例外，苹果的推送需要发到苹果的服务器上中转一下，也就是我们大家熟知的苹果的推送通知服务：APNs（Apple Push Notification service),例如友盟，极光之类的">
+<meta property="og:image" content="http://yoursite.com/images/push_1.png">
+<meta property="og:image" content="http://yoursite.com/images/push_2.png">
+<meta property="og:image" content="http://yoursite.com/images/push_3.png">
+<meta property="og:image" content="http://yoursite.com/images/push_4.png">
+<meta property="og:image" content="http://yoursite.com/images/push_5.png">
+<meta property="og:image" content="http://yoursite.com/images/push_6.png">
+<meta property="og:image" content="http://yoursite.com/images/push_7.png">
+<meta property="og:image" content="http://yoursite.com/images/push_8.png">
+<meta property="og:image" content="http://yoursite.com/images/push_9.png">
+<meta property="og:image" content="http://yoursite.com/images/push_10.png">
+<meta property="og:image" content="http://yoursite.com/images/push_11.png">
+<meta property="og:image" content="http://yoursite.com/images/push_12.png">
+<meta property="og:updated_time" content="2018-07-17T08:59:34.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xcode无线真机调试">
-<meta name="twitter:description" content="一般情况下Xcode调试肯定是数据线链接真机比较稳妥，但是作为一枚好说话的客户端测开，有时真有一种把客户端RD宠成baby的节奏。每天上班都会发现数据线不翼而飞，RD总有一种吃数据线的本领，导致经常遇到没有数据线调试的尴尬场景；And偶尔回家没事想自己研究点东西的时候，就经常需要运行个demo什么的到手机上，又几乎从来不会带转接头这种东西回家。。。。。所以只能尝试无线真机调试，所以才有了此文，比">
-<meta name="twitter:image" content="http://yoursite.com/images/xcode_2.png">
+<meta name="twitter:title" content="iOS --推送证书的创建及过期处理">
+<meta name="twitter:description" content="无论是iPhone还是android，我们用到的所有的应用基本上都是有推送通知服务的，这是应用很好的推广方式。上一章我们简单讲了下苹果的安全验证机制就可说明，苹果对这些跟用户相关的信息的把控是很严格的，push也不例外，苹果的推送需要发到苹果的服务器上中转一下，也就是我们大家熟知的苹果的推送通知服务：APNs（Apple Push Notification service),例如友盟，极光之类的">
+<meta name="twitter:image" content="http://yoursite.com/images/push_1.png">
 
 
 
@@ -133,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/07/Xcode无线真机调试/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/17/iOS-推送证书的创建及过期处理/"/>
 
 
 
 
 
-  <title>Xcode无线真机调试 | 兰小妞滴Blog</title>
+  <title>iOS --推送证书的创建及过期处理 | 兰小妞滴Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +277,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/07/Xcode无线真机调试/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/iOS-推送证书的创建及过期处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="单晓兰">
@@ -286,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Xcode无线真机调试</h1>
+          <h1 class="post-title" itemprop="name headline">iOS --推送证书的创建及过期处理</h1>
         
 
         <div class="post-meta">
@@ -298,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-07T14:06:07+08:00">
-                May 7 2018
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T11:56:23+08:00">
+                Jul 17 2018
               </time>
             
 
@@ -334,22 +342,26 @@
 
       
         <blockquote>
-<p>一般情况下Xcode调试肯定是数据线链接真机比较稳妥，但是作为一枚好说话的客户端测开，有时真有一种把客户端RD宠成baby的节奏。每天上班都会发现数据线不翼而飞，RD总有一种吃数据线的本领，导致经常遇到没有数据线调试的尴尬场景；And偶尔回家没事想自己研究点东西的时候，就经常需要运行个demo什么的到手机上，又几乎从来不会带转接头这种东西回家。。。。。所以只能尝试无线真机调试，所以才有了此文，比较简单，作为笔记记录一下。</p>
+<p>无论是iPhone还是android，我们用到的所有的应用基本上都是有推送通知服务的，这是应用很好的推广方式。上一章我们简单讲了下苹果的安全验证机制就可说明，苹果对这些跟用户相关的信息的把控是很严格的，push也不例外，苹果的推送需要发到苹果的服务器上中转一下，也就是我们大家熟知的苹果的推送通知服务：APNs（Apple Push Notification service),例如友盟，极光之类的推送服务都是向APNs推送消息，APNs再将消息推送给设备的，并不像安卓那样直接找到设备发送消息；苹果需要验证是否含有证书，有证书才能发送；现在我们就看看推送证书如何创建：</p>
 </blockquote>
-<h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><p>无线调试是WWDC2017的新功能，iOS11以上，Xcode9这是刚性要求。</p>
 <ul>
-<li>至少Mac OSX 10.12.6</li>
-<li>iOS 11</li>
-<li>Xcode 9</li>
+<li>1、首先登录自己的开发账号，进入iOS Certificates证书中心，点击Certificates 下的All,这时点击右上角的“+”号增加证书，如下图:<br><img src="/images/push_1.png" alt=""></li>
+<li>2、进入证书类型选择页面，这里主要有创建开发证书、发布证书、推送开发证书、推送生产证书几个类型，我的账号下的发布证书已建满，所以呈灰色，但推送证书（带Push）正常,一般推送的开发和生产证书都需要，开发证书供开发时候用，生产证书发布时用，两种后面的步骤一致，所有在这就不重复介绍，只选择一种，选择好证书类型，点击下面的Continue按钮:<br><img src="/images/push_2.png" alt=""></li>
+<li>3、选择需要创建推送证书的应用的APP ID，点击continue：<br><img src="/images/push_3.png" alt=""></li>
+<li>4、进入Create a CSR file 页面，直接Continue:<br><img src="/images/push_4.png" alt=""></li>
+<li>5、这时会让你选择CSR file，但是CSR file我们暂时还未创建，所以我们得先创建CSR file，再进行下一步：<br><img src="/images/push_5.png" alt=""></li>
+<li>6、在Mac电脑上打开钥匙串访问:<br><img src="/images/push_6.png" alt="">  </li>
+<li>7、点击菜单中的钥匙串访问—&gt;证书助理—&gt;从证书颁发机构请求证书…，进入证书助理页面，选择存储到磁盘，电子邮件随便填，点击继续：<br><img src="/images/push_7.png" alt="">   </li>
+<li>8、这时就创建好了CSR file文件了，桌面出现如下图标：<br><img src="/images/push_8.png" alt="">  </li>
+<li>9、接下来回到第五步，选择刚创建好的CSR file，点击continue：<br><img src="/images/push_9.png" alt=""></li>
+<li>10、这时证书已经创建好了，回到iOS Certificates证书中心页面，我们就可以看到我们创建的证书，后面还有到期时间：<br><img src="/images/push_10.png" alt=""></li>
+<li>11、我们已经创建好证书了，接下来就是安装证书了，点击Download下载，双击证书，注意一定要双击，开发、生产证书都是一样的，这样推送证书就安装好了，可以去钥匙串看到：<br><img src="/images/push_11.png" alt=""></li>
+<li>12、我们已经创建了证书也已经安装好了证书，但是我们集成的一些第三方平台，如极光推送，还需要我们上传证书到它们平台，但它们要的证书并不是我们之前创建的，而是需要.p12文件的证书，这就需要我们从钥匙串导出.p12格式，生产、开发都需要，操作如下：<br><img src="/images/push_12.png" alt=""></li>
+<li>13、一般情况下，将上面到处的证书上传到第三方平台就可以，上传成功后会提示已验证，这时就可以集成SDK，发送PUSH了。<br>有人注意到推送证书有时间期限的，是的，是有有效期，有时我们应用突然接不到消息了，有可能就是证书过期了，有效期一般为1年左右，那有效期快过了怎么处理呢？<br>解决方案:</li>
 </ul>
-<h2 id="使用无线进行设备链接"><a href="#使用无线进行设备链接" class="headerlink" title="使用无线进行设备链接"></a>使用无线进行设备链接</h2><ul>
-<li>手机连接上Xcode，打开Xcode菜单：Windows-&gt;Device and Simulators。找到连接上的设备，把Connect via network选项打勾。<br><img src="/images/xcode_2.png" alt=""></li>
-<li>此时，拔掉数据线，在Xcode选择打包设备时即可发现刚刚被拔掉数据线的设备。但是设备链接出显示该设备处于“Disconnected”状态，且一直loading。  </li>
-<li>回到刚刚的设备列表中，选中手机右键，在出来的选项卡中选择一个“Connect via IP Address”项。选择之后输入手机的局域网ip地址。<br><img src="/images/xcode_3.png" alt=""></li>
-<li>连接完成后可以看到在连接的手机右边有一个地球连接标志，长这样<br><img src="/images/xcode_1.png" alt=""></li>
-<li>完成后可以看到在连接的手机邮编出现一个地球连接标记，如下图所示：<br><img src="/images/xcode_4.png" alt=""><br>完成上述操作后就能脱离数据线的束缚了，后续在编译选择设备时，可直接选择该设备进行编译。</li>
-</ul>
-<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>楼主第一次成功后，想重新连接截图记录一下，所以删了想重来，就死也连接不上了，各种找资料无果，最后是重启了Mac搞定的，遇到同样问题的小伙伴可以尝试重启。</p>
+<p>1、删除MAC上钥匙串访问中对应的推送证书<br>2、去开发者中心删掉过期推送证书，重新按着上面的步骤重新来一遍<br>3、在第三方平台上重新上传新的.p12证书</p>
+<p>已上线的应用也是一样，删掉证书不会影响推送，只要对应的APP ID是一样的！</p>
+<p>链接：<a href="https://www.jianshu.com/p/ca8df77ee18e" target="_blank" rel="external">https://www.jianshu.com/p/ca8df77ee18e</a><br>來源：简书</p>
 
       
     </div>
@@ -379,7 +391,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/xcode/" rel="tag"># xcode</a>
+            <a href="/tags/PUSH证书/" rel="tag"># PUSH证书</a>
           
         </div>
       
@@ -392,8 +404,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/02/如何发布一个iOS全新APP-从证书管理到Jenkins任务上的archive打包上传/" rel="next" title="如何发布一个iOS全新APP--从证书管理到Jenkins任务上的archive打包上传">
-                <i class="fa fa-chevron-left"></i> 如何发布一个iOS全新APP--从证书管理到Jenkins任务上的archive打包上传
+              <a href="/2018/05/07/Xcode无线真机调试/" rel="next" title="Xcode无线真机调试">
+                <i class="fa fa-chevron-left"></i> Xcode无线真机调试
               </a>
             
           </div>
@@ -401,10 +413,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/17/iOS-推送证书的创建及过期处理/" rel="prev" title="iOS --推送证书的创建及过期处理">
-                iOS --推送证书的创建及过期处理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,17 +459,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/sxl.png"
@@ -523,22 +522,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境依赖"><span class="nav-number">1.</span> <span class="nav-text">环境依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用无线进行设备链接"><span class="nav-number">2.</span> <span class="nav-text">使用无线进行设备链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备注"><span class="nav-number">3.</span> <span class="nav-text">备注</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
